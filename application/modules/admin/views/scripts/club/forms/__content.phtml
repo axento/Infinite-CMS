@@ -1,0 +1,17 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.min.js') ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.init.js') ?>
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('content')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="content">Omschrijving <span class="text-danger">*</span></label>
+            <div class="controls">
+                <textarea name="content" id="content" class="mceEditor form-control"><?php echo $this->escape($this->item->getContent()) ?></textarea>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

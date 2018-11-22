@@ -1,0 +1,47 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/order-header.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/css/customize.css');
+
+$this->headTitle('Header volgorde');
+
+$this->placeholder('pageTitle')
+     ->append('Header volgorde');
+?>
+
+<h1 class="page-header">
+    Volgorde aanpassen <small>Sleep de slides naar de gewenste positie.</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/header/index" class="btn btn-secondary">Terug naar het overzicht</a>
+            </div>
+
+            <div class="panel-body">
+
+                <form id="dd-form" action="<?php echo $this->url; ?>" method="post">
+
+                    <ul id="sortable-list-header">
+                        <?php foreach($this->headers as $item): ?>
+                            <?php if($item->getID() != 0): ?>
+                            <li title="<?php echo $item->getID(); ?>">
+                                <a class="btn btn-default btn-xs"><i class="ti-exchange-vertical"></i></a> <?php echo $item->getName(); ?>
+                            </li>
+                            <?php endif; ?>
+                            <?php $order[] = $item->getID(); ?>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <input type="hidden" name="sort_order" id="sort_order" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

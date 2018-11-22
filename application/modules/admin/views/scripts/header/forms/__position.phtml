@@ -1,0 +1,38 @@
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="control-group">
+            <label class="control-label" for="xTitle">Uitlijning titel</label>
+            <div class="controls">
+                <select name="xTitle" class="col-sm-2 m-t-10">
+                    <option value="left" <?php if ($this->item->getXTitle() == 'left'): ?>selected="selected"<?php endif; ?>>Links</option>
+                    <option value="center" <?php if ($this->item->getXTitle() == 'center'): ?>selected="selected"<?php endif; ?>>Midden</option>
+                    <option value="right" <?php if ($this->item->getXTitle() == 'right'): ?>selected="selected"<?php endif; ?>>Rechts</option>
+                </select>
+                <select name="yTitle" class="col-sm-2 m-t-10">
+                    <option value="150" <?php if ($this->item->getYTitle() == '150'): ?>selected="selected"<?php endif; ?>>Boven</option>
+                    <option value="350" <?php if ($this->item->getYTitle() == '350'): ?>selected="selected"<?php endif; ?>>Midden</option>
+                    <option value="550" <?php if ($this->item->getYTitle() == '550'): ?>selected="selected"<?php endif; ?>>Onder</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="control-group m-t-20">
+            <label class="control-label" for="xContent">Uitlijning knop</label>
+            <div class="controls">
+                <select name="xContent" class="col-sm-2 m-t-10">
+                    <option value="left" <?php if ($this->item->getXContent() == 'left'): ?>selected="selected"<?php endif; ?>>Links</option>
+                    <option value="center" <?php if ($this->item->getXContent() == 'center'): ?>selected="selected"<?php endif; ?>>Midden</option>
+                    <option value="right" <?php if ($this->item->getXContent() == 'right'): ?>selected="selected"<?php endif; ?>>Rechts</option>
+                </select>
+                <select name="yContent" class="col-sm-2 m-t-10">
+                    <option value="150" <?php if ($this->item->getYContent() == '150'): ?>selected="selected"<?php endif; ?>>Boven</option>
+                    <option value="350" <?php if ($this->item->getYContent() == '350'): ?>selected="selected"<?php endif; ?>>Midden</option>
+                    <option value="550" <?php if ($this->item->getYContent() == '550'): ?>selected="selected"<?php endif; ?>>Onder</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+</div>

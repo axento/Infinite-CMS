@@ -1,0 +1,149 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Pagina\'s');
+
+$this->placeholder('pageTitle')
+    ->append('Pagina overzicht ('.$_SESSION['System']['lng'].')');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Pagina's <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/content/add/type/page" class="btn btn-success"><i class="ti-file"></i> Pagina toevoegen</a>
+                <a href="/admin/content/add/type/link" class="btn btn-success"><i class="ti-new-window"></i> Link toevoegen</a>
+                <?php if($user->getId() == 1): ?>
+                    <a href="/admin/content/add/type/module" class="btn btn-secondary"><i class="ti-infinite"></i> Module toevoegen</a>
+                <?php endif; ?>
+                <a href="/admin/content/order" class="btn btn-primary"><i class="ti-exchange-vertical"></i> Volgorde aanpassen</i></a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Toegang voor</th>
+                        <th>In menu</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <?php foreach ($this->pages as $id => $page) : ?>
+                        <tr>
+                            <td>
+                                <?php if ($id === 0): ?>
+                                    <i class="ti-home"></i>
+                                <?php elseif ($page->getChildren()): ?>
+                                    <?php echo str_repeat('&nbsp;', 10) ?>
+                                    <i class="ti-folder"></i>
+                                <?php elseif ($page->getContentType() == 'module'): ?>
+                                    <?php echo str_repeat('&nbsp;', 10) ?>
+                                    <i class="ti-infinite"></i>
+                                <?php elseif ($page->getContentType() == 'link'): ?>
+                                    <?php echo str_repeat('&nbsp;', 10) ?>
+                                    <i class="ti-new-window"></i>
+                                <?php else: ?>
+                                    <?php echo str_repeat('&nbsp;', 10) ?>
+                                    <i class="ti-file"></i>
+                                <?php endif; ?>
+                                <?php echo $this->escape($page->getTitle()) ?>
+                            </td>
+                            <td>
+                                <?php if (!$page->getPermissions()): ?>Publiek<?php endif ?>
+                                <?php foreach ($page->getPermissions() as $group): ?>
+                                    <?php echo $group->getName() . ' '; ?>
+                                <?php endforeach ?>
+                            </td>
+                            <td>
+                                <?php if ($page->getNavigation() == 1): ?>
+                                    <i class="ti-check"></i>
+                                <?php endif; ?>
+                            </td>
+                            <td class="btn-col text-right" style="white-space: nowrap">
+                                <?php if ($page->getContentType() == 'page' || $page->getContentType() == 'link' || $user->getId() == 1): ?>
+                                    <a href="<?php echo $this->url(array('controller' => 'content', 'action' => 'edit', 'id' => $page->getId(), 'lng' => $_SESSION['System']['lng'])) ?>" class="btn btn-default btn-xs"><i class="ti-pencil"></i></a>
+                                <?php endif; ?>
+                                <?php if ($page->getContentType() == 'page' || $page->getContentType() == 'link' || $user->getId() == 1): ?>
+                                    <a class="btn btn-default btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('controller' => 'content', 'action' => 'delete', 'id' => $page->getId())) ?>');"  ><i class="ti-trash"></i></a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+
+                        <?php
+                        if ($page->getChildren()):
+                            foreach ($page->getChildren() as $child):
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo str_repeat('&nbsp;', 20) ?>
+                                        <?php if ($child->getContentType() == 'module'): ?>
+                                            <i class="ti-infinite"></i>
+                                        <?php elseif ($child->getContentType() == 'link'): ?>
+                                            <i class="ti-new-window"></i>
+                                        <?php else: ?>
+                                            <i class="ti-file"></i>
+                                        <?php endif; ?>
+                                        <?php echo $this->escape($child->getTitle()) ?>
+                                    </td>
+                                    <td>
+                                        <?php if (!$child->getPermissions()): ?>Publiek<?php endif ?>
+                                        <?php foreach ($child->getPermissions() as $group): ?>
+                                            <?php echo $group->getName() . ' '; ?>
+                                        <?php endforeach ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($child->getNavigation() == 1): ?>
+                                            <i class="ti-check"></i>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="btn-col text-right" style="white-space: nowrap">
+                                        <?php if ($child->getID() && ($child->getContentType() == 'page' || $child->getContentType() == 'link' || $user->getId() == 1)): ?>
+                                            <a href="<?php echo $this->url(array('controller' => 'content', 'action' => 'edit', 'id' => $child->getId(), 'lng' => $_SESSION['System']['lng'])) ?>" class="btn btn-default btn-xs"><i class="ti-pencil"></i></a>
+                                        <?php endif; ?>
+                                        <?php if ($child->getID() && ($child->getContentType() == 'page' || $child->getContentType() == 'link' || $user->getId() == 1)): ?>
+                                            <a href="#delete" data-toggle="modal" class="btn btn-default btn-danger btn-xs" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('controller' => 'content', 'action' => 'delete', 'id' => $child->getId())) ?>');"><i class="ti-trash"></i></a>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php
+                            endforeach;
+                        endif;
+                        ?>
+
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Pagina verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u deze pagina wilt verwijderen?<br />
+                    Ook alle eventuele onderliggende pagina's zullen verwijderd worden.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

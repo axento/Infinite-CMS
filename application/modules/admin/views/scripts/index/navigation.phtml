@@ -1,0 +1,53 @@
+<?php
+$user = Zend_Auth::getInstance()->getIdentity();
+$config = Zend_Registry::get('config');
+$userNamespace = new Zend_Session_Namespace('userNamespace');
+?>
+
+<div id="sidebar" class="sidebar sidebar-inverse">
+    <!-- BEGIN scrollbar -->
+    <div data-scrollbar="true" data-height="100%">
+        <!-- BEGIN nav -->
+        <ul class="nav">
+            <li class="nav-profile">
+                <h4><a href="/" target="_blank"><?php echo Zend_Registry::get('config')->system->web->domain; ?></a></h4>
+            </li>
+            <li class="nav-divider"></li>
+            <li class="nav-header">Navigation</li>
+            <li <?php if($this->dashboardTab): ?>class="active" <?php endif; ?>><a href="/admin"><i class="ti-home"></i><span>Dashboard</span></a></li>
+            <li><a href="https://www.google.be/analytics" target="_blank"><i class="ti-pie-chart"></i><span>Analytics</span></a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-header">Inhoud</li>
+            <li <?php if($this->contentTab): ?>class="active" <?php endif; ?>><a href="/admin/content"><i class="ti-file"></i><span>Pagina's</span></a></li>
+            <!--<li <?php if($this->contentblockTab): ?>class="active" <?php endif; ?>><a href="/admin/contentblock"><i class="ti-files"></i><span>Tekstblokken</span></a></li>-->
+            <li <?php if($this->galleryTab): ?>class="active" <?php endif; ?>><a href="/admin/gallery"><i class="ti-gallery"></i><span>Fotogalerij</span></a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-header">Modules</li>
+            <li <?php if($this->headerTab): ?>class="active" <?php endif; ?>><a href="/admin/header"><i class="ti-infinite"></i><span>Header</span></a></li>
+            <li <?php if($this->newsTab): ?>class="active" <?php endif; ?>><a href="/admin/news"><i class="ti-infinite"></i><span>Nieuws</span></a></li>
+            <li <?php if($this->logoTab): ?>class="active" <?php endif; ?>><a href="/admin/logo"><i class="ti-infinite"></i> <span>Logo's zijkant</span></a></li>
+            <li <?php if($this->merchantTab): ?>class="active" <?php endif; ?>><a href="/admin/merchant"><i class="ti-infinite"></i> <span>Handelaars</span></a></li>
+            <li <?php if($this->merchantTypeTab): ?>class="active" <?php endif; ?>><a href="/admin/merchant-type"><i class="ti-infinite"></i> <span>Handelaar types</span></a></li>
+            <li <?php if($this->clubTab): ?>class="active" <?php endif; ?>><a href="/admin/club"><i class="ti-infinite"></i> <span>Verenigingen</span></a></li>
+            <li <?php if($this->eventTab): ?>class="active" <?php endif; ?>><a href="/admin/event"><i class="ti-infinite"></i> <span>Kalender</span></a></li>
+            <li <?php if($this->wishTab): ?>class="active" <?php endif; ?>><a href="/admin/wish"><i class="ti-infinite"></i> <span>Wensen &amp; felicitaties</span></a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-header">Aanvragen</li>
+            <li <?php if($this->contactTab): ?>class="active" <?php endif; ?>><a href="/admin/contact"><i class="ti-pencil"></i><span>Contactformulier</span></a></li>
+
+            <li class="nav-divider"></li>
+            <li class="nav-header">Rechten</li>
+            <li <?php if($this->accountTab): ?>class="active" <?php endif; ?>><a href="/admin/account"><i class="ti-user"></i><span>Gebruikers</span></a></li>
+            <li <?php if($this->groupTab): ?>class="active" <?php endif; ?>><a href="/admin/group"><i class="ti-id-badge"></i> <span>Groepen</span></a></li>
+
+            <li class="nav-divider"></li>
+
+            <li class="nav-copyright"><a href="https://www.axento.be" target="_blank">&copy; 2018 axento.be</a></li>
+        </ul>
+        <!-- END nav -->
+    </div>
+    <!-- END scrollbar -->
+</div>

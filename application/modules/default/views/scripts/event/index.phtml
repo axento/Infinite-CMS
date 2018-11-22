@@ -1,0 +1,55 @@
+<?php if($this->events): ?>
+<?php foreach ($this->events as $item): ?>
+<?php $link = $this->url(array(
+    'lng' => $this->lng,
+    'url' => $item->getUrl(),
+    'id'  => $item->getID()),
+    'event-show', true);  ?>
+
+
+        <?php $dateStart = substr($item->getDateStart(),8,2).'/'.
+            substr($item->getDateStart(),5,2).'/'.
+            substr($item->getDateStart(),0,4).' '.
+            substr($item->getDateStart(),11,2).':'.
+            substr($item->getDateStart(),14,2); ?>
+
+        <?php $dateStop = substr($item->getDateStop(),8,2).'/'.
+            substr($item->getDateStop(),5,2).'/'.
+            substr($item->getDateStop(),0,4).' '.
+            substr($item->getDateStop(),11,2).':'.
+            substr($item->getDateStop(),14,2); ?>
+
+<div class="news-item">
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <h1><?php echo $this->escape($item->getTitle()) ?></h1>
+            <h4><?php echo $dateStart; ?></h4>
+
+            <?php if ($item->getDateStop() > $item->getDateStart()): ?>
+                <?php if (substr($item->getDateStart(),0,10) == substr($item->getDateStop(),0,10)): ?>
+                    Einde: <?php echo substr($item->getDateStop(),11,5); ?>
+                <?php else: ?>
+                    Einde: <?php echo $dateStop; ?>
+                <?php endif; ?>
+
+            <?php endif; ?>
+
+            <div class="m-t-20">
+                <?php echo $item->getContent(); ?>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<?php endforeach; ?>
+
+<?php else: ?>
+<div class="alert alert-warning m-t-40">
+    <p>Er zijn geen activiteiten.</p>
+</div>
+<?php endif; ?>

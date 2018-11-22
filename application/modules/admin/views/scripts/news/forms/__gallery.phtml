@@ -1,0 +1,30 @@
+<div class="alert alert-info">
+    <p>Koppel &eacute;&eacute;n of meerdere fotogalerij(en) aan dit nieuwsbericht.<br />
+        De foto's die in deze galerijen zitten zullen zichtbaar zijn bij dit nieuwsbericht op voorwaarde dat de gallerij "actief" is.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="control-group">
+            <?php foreach ($this->galleries as $id=>$gallery): ?>
+
+                <?php
+                if(in_array($gallery->getGid(),$this->news->getGalleries())) {
+                    $checked = true;
+                } else {
+                    $checked = false;
+                }
+                ?>
+
+                <div class="checkbox">
+                    <input type="checkbox" name="galleries[]" id="gallery-<?php echo $gallery->getGID(); ?>" value="<?php echo $gallery->getGid(); ?>" <?php if($checked): ?>checked="checked"<?php endif; ?> />
+                    <label for="gallery-<?php echo $gallery->getGID(); ?>"><?php echo $gallery->getTitle(); ?></label>
+                </div>
+
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+
+

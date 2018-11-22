@@ -1,0 +1,75 @@
+<?php if ($this->headers): ?>
+<div class="banner clearfix hidden-xs">
+    <div class="slideshow">
+
+        <div class="slider-revolution-5-container">
+            <div id="slider-banner-fullscreen" class="slider-banner-carousel rev_slider" data-version="5.0">
+
+                <ul class="slides">
+
+                    <?php foreach($this->headers as $slide): ?>
+                    <li class="text-right" data-transition="fade" data-slotamount="7" data-masterspeed="default" data-title="Openness">
+
+                        <img src="/img/header/large/<?php echo $slide->getImage(); ?>"
+                             alt=""
+                             data-bgposition="center center"
+                             data-bgrepeat="no-repeat"
+                             data-bgfit="cover"
+                             class="rev-slidebg"
+                        >
+
+                        <?php if ($slide->getTitle()): ?>
+                        <div class="tp-caption large_white"
+                             data-x="<?php echo $slide->getXTitle() ?>"
+                             data-y="<?php echo $slide->getYTitle() ?>"
+                             data-start="500"
+                             data-transform_idle="o:1;"
+                             data-transform_in="y:[100%];sX:1;sY:1;o:0;s:1150;e:Power4.easeInOut;"
+                             data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;"
+                             data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;">
+
+                            <span class="slider-title" style="color:<?php echo $slide->getTextColor(); ?>"><?php echo $this->escape($slide->getTitle()); ?></span>
+
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if ($slide->getTitle()): ?>
+                        <div class="tp-caption large_white"
+                             data-x="<?php echo $slide->getXTitle() ?>"
+                             data-y="<?php echo $slide->getYTitle()+60 ?>"
+                             data-start="500"
+                             data-transform_idle="o:1;"
+                             data-transform_in="y:[100%];sX:1;sY:1;o:0;s:1150;e:Power4.easeInOut;"
+                             data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;"
+                             data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;">
+                            <span class="slider-subtitle" style="color:<?php echo $slide->getTextColor(); ?>"><?php echo $this->escape($slide->getSubtitle()); ?></span>
+                        </div>
+                        <?php endif; ?>
+
+                        <?php if ($slide->getURL()): ?>
+                            <div class="tp-caption medium_white <?php if($slide->getXContent() == 'center'): ?>text-center<?php endif; ?>"
+                                 data-x="<?php echo $slide->getXContent() ?>"
+                                 data-y="<?php echo $slide->getYContent() ?>"
+                                 data-start="750"
+                                 data-transform_idle="o:1;"
+                                 data-transform_in="y:[100%];sX:1;sY:1;s:850;e:Power4.easeInOut;"
+                                 data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;"
+                                 data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                                 data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;">
+                                <span class="slider-content" style="color:<?php echo $slide->getTextColor(); ?>"><a href="<?php echo $slide->getURL() ?>" class="btn btn-default btn-large">Lees verder</a></span>
+                            </div>
+                        <?php endif; ?>
+
+                    </li>
+                    <?php endforeach; ?>
+
+                </ul>
+
+                <div class="tp-bannertimer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

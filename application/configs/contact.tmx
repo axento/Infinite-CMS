@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+	<header creationtoolversion="1.0.0" datatype="winres" segtype="sentence"
+         adminlang="en-us" srclang="en-us" o-tmf="abc">
+	</header>
+	<body>
+		<!-- Headers h1, h2, ... -->
+		<tu tuid='hdr.contact'>
+			<tuv xml:lang="nl"><seg>Contacteer ons</seg></tuv>
+			<tuv xml:lang="fr"><seg>Contactez-nous</seg></tuv>
+			<tuv xml:lang="de"><seg>Name</seg></tuv>
+			<tuv xml:lang="en"><seg>Contact us</seg></tuv>
+		</tu>
+		<tu tuid='hdr.address'>
+            <tuv xml:lang="nl"><seg>Ons adres</seg></tuv>
+            <tuv xml:lang="fr"><seg>Contactez-nous</seg></tuv>
+            <tuv xml:lang="de"><seg>Name</seg></tuv>
+            <tuv xml:lang="en"><seg>Find us</seg></tuv>
+        </tu>
+
+		<!-- Labels -->
+		<tu tuid='lbl.name'>
+			<tuv xml:lang="nl"><seg>Uw naam</seg></tuv>
+			<tuv xml:lang="fr"><seg>Nom</seg></tuv>
+			<tuv xml:lang="de"><seg>Name</seg></tuv>
+			<tuv xml:lang="en"><seg>Your name</seg></tuv>
+		</tu>
+		<tu tuid='lbl.email'>
+			<tuv xml:lang="nl"><seg>Uw e-mailadres</seg></tuv>
+			<tuv xml:lang="fr"><seg>Adresse e-amail</seg></tuv>
+			<tuv xml:lang="de"><seg>E-mail</seg></tuv>
+			<tuv xml:lang="en"><seg>Your E-mail address</seg></tuv>
+		</tu>
+		<tu tuid='lbl.phone'>
+			<tuv xml:lang="nl"><seg>Uw telefoonnummer</seg></tuv>
+			<tuv xml:lang="fr"><seg>Téléphone</seg></tuv>
+			<tuv xml:lang="de"><seg>Telefon</seg></tuv>
+			<tuv xml:lang="en"><seg>Your phone number</seg></tuv>
+		</tu>
+		<tu tuid='lbl.message'>
+            <tuv xml:lang="nl"><seg>Uw boodschap</seg></tuv>
+            <tuv xml:lang="fr"><seg>Question / Commentaire</seg></tuv>
+            <tuv xml:lang="de"><seg>Frage / Kommentare</seg></tuv>
+            <tuv xml:lang="en"><seg>Question / Comment</seg></tuv>
+        </tu>
+        <tu tuid='lbl.copy'>
+            <tuv xml:lang="nl"><seg>Zend een kopie naar mezelf</seg></tuv>
+            <tuv xml:lang="fr"><seg>Question / Commentaire</seg></tuv>
+            <tuv xml:lang="de"><seg>Frage / Kommentare</seg></tuv>
+            <tuv xml:lang="en"><seg>Send a copy to myself</seg></tuv>
+        </tu>
+
+        <!-- Placeholders -->
+        <tu tuid='ph.name'>
+            <tuv xml:lang="nl"><seg>Vul uw naam in</seg></tuv>
+            <tuv xml:lang="fr"><seg>Nom</seg></tuv>
+            <tuv xml:lang="de"><seg>Name</seg></tuv>
+            <tuv xml:lang="en"><seg>Enter name</seg></tuv>
+        </tu>
+        <tu tuid='ph.email'>
+            <tuv xml:lang="nl"><seg>Vul uw e-mailadres in</seg></tuv>
+            <tuv xml:lang="fr"><seg>Adresse e-amail</seg></tuv>
+            <tuv xml:lang="de"><seg>E-mail</seg></tuv>
+            <tuv xml:lang="en"><seg>Enter E-mail</seg></tuv>
+        </tu>
+        <tu tuid='ph.phone'>
+            <tuv xml:lang="nl"><seg>Vul uw telefoonnummer in</seg></tuv>
+            <tuv xml:lang="fr"><seg>Téléphone</seg></tuv>
+            <tuv xml:lang="de"><seg>Telefon</seg></tuv>
+            <tuv xml:lang="en"><seg>Enter phone number</seg></tuv>
+        </tu>
+        <tu tuid='ph.message'>
+            <tuv xml:lang="nl"><seg>Vul uw boodschap in</seg></tuv>
+            <tuv xml:lang="fr"><seg>Question / Commentaire</seg></tuv>
+            <tuv xml:lang="de"><seg>Frage / Kommentare</seg></tuv>
+            <tuv xml:lang="en"><seg>Enter message</seg></tuv>
+        </tu>
+
+		<!-- Buttons -->
+		<tu tuid='btn.send'>
+			<tuv xml:lang="nl"><seg>Verzenden</seg></tuv>
+			<tuv xml:lang="fr"><seg>Envoyer</seg></tuv>
+			<tuv xml:lang="de"><seg>Senden</seg></tuv>
+			<tuv xml:lang="en"><seg>Send</seg></tuv>
+		</tu>
+
+	</body>
+</tmx>

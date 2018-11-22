@@ -1,0 +1,40 @@
+<?php
+
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/form-plugins.demo.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/js/bootstrap-datepicker.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-timepicker/js/bootstrap-timepicker.min.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/css/bootstrap-datepicker.css');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/plugins/form/bootstrap-timepicker/css/bootstrap-timepicker.css');
+
+?>
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('datePublication')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="summary">Publiceren op <span class="text-danger">*</span></label>
+            <div class="input-group date" id="datepicker-component">
+                <input type="text" name="datePublication" class="form-control col-sm-2" value="<?php echo $this->day; ?>/<?php echo $this->month; ?>/<?php echo $this->year ?>" />
+                <span class="input-group-addon"><i class="ti-layout-grid3-alt"></i></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Tijdstip <span class="text-danger">*</span></label>
+            <div class="input-group bootstrap-timepicker timepicker">
+                <input id="timepicker-default" name="timePublication" type="text" class="form-control col-sm-2" value="<?php echo $this->hour; ?>:<?php echo $this->minutes; ?>" />
+                <span class="input-group-addon"><i class="ti-timer"></i></span>
+            </div>
+        </div>
+
+        <div class="control-group m-t-40">
+            <div class="checkbox">
+                <input type="checkbox" name="archive" id="archive" value="1" <?php if($this->news->getArchive() == '1'): ?>checked="checked"<?php endif; ?> />
+                <label for="archive">Bewaren in archief?<span class="text-muted"><br />Het nieuwsbericht blijft steeds bewaard in het nieuwsarchief, zelfs na de vervaldatum.</span></label>
+            </div>
+        </div>
+
+    </div>
+</div>
+

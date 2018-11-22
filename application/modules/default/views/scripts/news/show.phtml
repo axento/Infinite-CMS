@@ -1,0 +1,87 @@
+<?php
+
+$this->headLink()->setStylesheet($this->baseUrl() . '/js/admin/plugins/fancybox/jquery.fancybox.css');
+$this->headScript()->appendFile($this->baseUrl() . '/js/admin/plugins/fancybox/jquery.fancybox.js');
+
+$this->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
+$this->headMeta()->setProperty('og:image', 'http://www.bolderberg.be/img/news/large/'.$this->news->getImage());
+
+$this->placeholder('breadcrumbs')
+    ->append($this->news->getTitle());
+?>
+
+<?php $date = substr($this->news->getDateCreated(),8,2).'/'.
+    substr($this->news->getDateCreated(),5,2).'/'.
+    substr($this->news->getDateCreated(),0,4); ?>
+
+<!--
+<div class="row m-t-20">
+    <a href="/<?php //echo $this->lng; ?>" class="btn btn-secondary"><i class="fa fa-angle-double-left"></i> Terug naar het overzicht</a>
+</div>
+-->
+
+<?php if ($this->news->getImage()): ?>
+<div class="row">
+    <div class="col-sm-12">
+        <img src="/img/news/large/<?php echo $this->news->getImage(); ?>" alt="<?php echo $this->news->getTitle(); ?>" class="img-responsive m-t-20" />
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1><?php echo $this->news->getTitle() ?></h1>
+        <span class="date"><?php echo $date; ?></span>
+        <div class="m-t-10" style="font-style: italic;">
+            <?php echo $this->news->getSummary() ?>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <?php echo $this->news->getContent() ?>
+    </div>
+</div>
+
+<?php if($this->news->getVideo()) :?>
+<div class="row m-t-20">
+    <div class="col-sm-12">
+        <?php echo $this->news->getVideo(); ?>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if($this->pics) :?>
+    <div class="row m-t-20">
+        <?php foreach($this->pics as $album) : ?>
+            <?php foreach($album as $pic) : ?>
+                <div class="col-sm-3">
+                    <a class="image-link" title="<?php echo $pic['title']; ?>" href="/img/gallery/album_<?php echo $pic['album_id']; ?>/large/<?php echo $pic['image']; ?>">
+                        <img alt="<?php echo $pic['text']; ?>" src="/img/gallery/album_<?php echo $pic['album_id']; ?>/small/<?php echo $pic['image'] ?>" class="img-responsive" />
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<div class="row m-t-20 m-b-20">
+    <div class="col-sm-6">
+        <?php if ($this->next): ?>
+            <a href="/nl/post/<?php echo $this->next->getNid(); ?>/<?php echo $this->next->getUrl(); ?>" class="btn btn-primary btn-xs"><i class="fa fa-arrow-left"></i> vorig artikel</a>
+        <?php endif; ?>
+    </div>
+    <div class="col-sm-6 text-right">
+        <?php if ($this->prev): ?>
+            <a href="/nl/post/<?php echo $this->prev->getNid(); ?>/<?php echo $this->prev->getUrl(); ?>" class="btn btn-primary btn-xs">volgend artikel <i class="fa fa-arrow-right"></i></a>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="row m-t-50">
+    <div class="col-sm-12">
+        <div class="addthis_inline_share_toolbox"></div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <h4 class="m-t-20">Type handelaar</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('typeID')): ?> has-error<?php endif; ?>">
+            <div class="controls">
+                <select name="typeID" id="typeID" class="form-control">
+                    <option value="0" <?php if($this->item->getTypeID() == 0): ?>selected="selected"<?php endif; ?>>Selecteer het type handelaar</option>
+                    <?php foreach($this->types as $type): ?>
+                        <option value="<?php echo $type->getID(); ?>" <?php if($this->item->getTypeID() == $type->getID()): ?>selected="selected"<?php endif; ?>><?php echo $type->getType(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <h4 class="m-t-20">Adresgegevens</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('company')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="company">Handelaar <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="company" id="company" class="form-control" value="<?php echo $this->escape($this->item->getCompany()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('website')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="website">Website <span class="text-danger">*</span></label> <span class="text-muted">bv. http://www.bedrijfsnaam.be</span>
+            <div class="controls">
+                <input type="text" name="website" id="website" class="form-control" value="<?php echo $this->escape($this->item->getWebsite()) ?>" />
+            </div>
+        </div>
+
+    </div>
+</div>
+

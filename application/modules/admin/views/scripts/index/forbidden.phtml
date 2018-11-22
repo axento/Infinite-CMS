@@ -1,0 +1,17 @@
+<?php
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headTitle('Geen toegang');
+?>
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div class="alert alert-danger">
+            <h3><i class="ti-alert"></i> U heeft geen toegang tot deze module!</h3>
+            <a class="btn btn-danger btn-large" href="/admin"><i class="ti-home"></i> Dashboard</a>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php echo $this->action('head' , 'index' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+</head>
+
+<body id="bolderberg">
+
+<?php echo $this->render('__layout/header.phtml') ?>
+
+<?php echo $this->action('test' , 'header' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+
+<div id="content-wrapper" class="container">
+
+    <div class="row">
+
+        <div class="sidebar col-md-2 hidden-sm hidden-xs">
+
+            <?php echo $this->action('sidebar' , 'event' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+
+            <?php echo $this->action('index' , 'logo' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+        <div class="col-md-10 col-sm-12">
+            <?php echo $this->action('homepage' , 'news' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+        <div class="sidebar col-sm-12 visible-sm visible-xs m-t-40">
+            <?php echo $this->action('sidebar' , 'event' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+            <?php echo $this->action('index' , 'logo' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+    </div>
+</div>
+
+<?php echo $this->render('__layout/footer.phtml') ?>
+
+</body>
+
+</html>

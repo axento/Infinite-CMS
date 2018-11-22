@@ -1,0 +1,38 @@
+<?php echo $this->headTitle() ?>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="shortcut icon" href="/ico/admin/favicon.png" />
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,800" />
+<link rel="stylesheet" href="/css/admin/font-awesome.css" />
+
+<link rel="stylesheet" href="/css/admin/bootstrap.css" />
+<link rel="stylesheet" href="/css/admin/bootstrap-responsive.css" />
+
+<link rel="stylesheet" href="/css/admin/application.css" />
+<link rel="stylesheet" href="/css/admin/pages/dashboard.css" />
+<link rel="stylesheet" href="/css/admin/customize.css" />
+
+<link rel="stylesheet" href="/css/admin/smoothness/jquery-ui-1.10.1.custom.css" />
+
+<?php echo $this->headLink() ?>
+
+<script type="text/javascript" src="/js/admin/libs/modernizr-2.5.3.min.js"></script>
+<script type="text/javascript" src="/js/admin/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/js/admin/libs/jquery-ui-1.10.1.custom.min.js"></script>
+<script type="text/javascript" src="/js/admin/libs/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="/js/admin/libs/bootstrap/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/js/admin/Theme.js"></script>
+<script type="text/javascript" src="/js/admin/Charts.js"></script>
+
+<?php echo $this->headScript() ?>
+
+<script type="text/javascript">
+    $(function () {
+        Theme.init ();
+    });
+</script>
+

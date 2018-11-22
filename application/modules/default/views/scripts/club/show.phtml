@@ -1,0 +1,52 @@
+<?php
+
+$this->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
+$this->headMeta()->setProperty('og:image', 'http://www.bolderberg.be/img/clubs/small/'.$this->club->getImage());
+
+?>
+
+<div class="row m-t-20">
+    <a href="/<?php echo $this->lng; ?>/verenigingen" class="btn btn-secondary"><i class="fa fa-angle-double-left"></i> Terug naar het overzicht</a>
+</div>
+
+<div class="row">
+    <div class="col-sm-9">
+        <h1><?php echo $this->club->getCompany() ?></h1>
+        <p>
+            <?php echo $this->club->getStreet() ?> <?php echo $this->club->getNumber() ?>
+            <?php if($this->club->getBox()): ?>
+                bus <?php echo $this->club->getBox() ?>
+            <?php endif; ?><br />
+            <?php echo $this->club->getZip() ?> <?php echo $this->club->getCity() ?>
+        </p>
+    </div>
+    <div class="col-sm-3">
+        <?php if($this->club->getImage()): ?>
+        <img src="/img/clubs/small/<?php echo $this->club->getImage(); ?>" alt="<?php echo $this->club->getCompany(); ?>" class="img-responsive" />
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if ($this->club->getContent()): ?>
+    <div class="row m-t-20">
+        <div class="col-sm-12">
+            <?php echo $this->club->getContent(); ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div class="row m-t-20">
+    <div class="col-sm-12">
+        <h3>Contactgegevens</h3>
+        <?php if($this->club->getContact()): ?><i class="fa fa-user"></i> <?php echo $this->club->getContact(); ?><br /><?php endif; ?>
+        <?php if($this->club->getPhone()): ?><i class="fa fa-phone"></i> <?php echo $this->club->getPhone(); ?><br /><?php endif; ?>
+        <?php if($this->club->getEmail()): ?><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $this->club->getEmail(); ?>"><?php echo $this->club->getEmail(); ?></a><br /><?php endif; ?>
+        <?php if($this->club->getWebsite()): ?><i class="fa fa-desktop"></i> <a href="<?php echo $this->club->getWebsite(); ?>" target="_blank"><?php echo $this->club->getWebsite(); ?></a><?php endif; ?>
+    </div>
+</div>
+
+<div class="row m-t-50">
+    <div class="col-sm-12">
+        <div class="addthis_inline_share_toolbox"></div>
+    </div>
+</div>

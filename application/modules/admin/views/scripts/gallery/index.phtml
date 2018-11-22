@@ -1,0 +1,86 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Album overzicht');
+
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Fotogalerijen <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/gallery/add" class="btn btn-success"><i class="ti-gallery"></i> Album toevoegen</a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th class="text-right">Actief</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->albums as $id => $item): ?>
+                        <tr>
+                            <td><?php echo $this->escape($item->getTitle()) ?></td>
+
+                            <td class="btn-col text-right">
+                                <?php if ($item->getActive()): ?>
+                                    <a class="btn btn-success btn-xs" href="<?php echo $this->url(array('action' => 'activate-album', 'id' => $item->getGID())) ?>"><i class="ti-check"></i></a>
+                                <?php else: ?>
+                                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url(array('action' => 'activate-album', 'id' => $item->getGID())) ?>"><i class="ti-na"></i></a>
+                                <?php endif ?>
+                            </td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+
+                                    <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => 'edit', 'id' => $item->getGID())) ?>">
+                                        <i class="ti-pencil"></i>
+                                    </a>
+
+                                    <a title="Beheer Fotos" class="btn btn-info btn-xs" href="<?php echo $this->url(array('controller' => 'gallery_picture', 'action' => 'browse', 'id' => $item->getGID())) ?>">
+                                        <i class="ti-camera"></i>
+                                    </a>
+
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $item->getGID())) ?>');"  >
+                                        <i class="ti-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Pagina verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u dit album wilt verwijderen?<br />
+                    Ook alle foto's die in dit album zitten zullen worden verwijderd!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

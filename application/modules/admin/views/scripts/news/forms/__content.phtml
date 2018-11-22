@@ -1,0 +1,28 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.min.js') ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.init.js') ?>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="title">Titel bericht <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->news->getTitle()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group m-t-20 <?php if ($this->errors->getHtmlErrors('summary')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="summary">Samenvatting bericht <span class="text-danger">*</span></label>
+            <div class="controls">
+                <textarea name="summary" id="summary" class="mceEditor form-control"><?php echo $this->escape($this->news->getSummary()) ?></textarea>
+            </div>
+        </div>
+
+        <div class="control-group m-t-20 <?php if ($this->errors->getHtmlErrors('content')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="content">Bericht <span class="text-danger">*</span></label>
+            <div class="controls">
+                <textarea name="content" id="contenti" class="mceEditor form-control"><?php echo $this->escape($this->news->getContent()) ?></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+

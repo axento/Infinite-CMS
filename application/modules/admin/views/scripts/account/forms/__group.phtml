@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="control-group">
+            <label>Selecteer de gebruikersgroep waartoe deze gebruiker hoort:</label>
+            <?php $groups = $this->account->getGroups() ?>
+            <?php foreach ($this->groups as $group): ?>
+                <div class="radio">
+                    <input type="radio" name="group" value="1" id="group-<?php echo $group->getID(); ?>" <?php if ($this->account->getGroupID() == $group->getID()): ?>checked="checked" <?php endif; ?> />
+                    <label for="group-<?php echo $group->getID(); ?>"><?php echo $group->getName(); ?></label>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+
+
+
+
+    <div class="row m-t-20">
+        <div class="page-content col-sm-12">
+            <?php if ($this->page->getSubtitle()): ?>
+                <h1><?php echo $this->page->getSubtitle(); ?></h1>
+            <?php endif; ?>
+            <?php echo $this->page->getContent(); ?>
+        </div>
+    </div>
+
+    <?php if($this->page->getVideo()) :?>
+        <div class="row m-t-20">
+            <div class="col-sm-12">
+                <?php echo $this->page->getVideo(); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if($this->pics) :?>
+
+        <!--<div class="row m-t-20">-->
+            <?php foreach($this->pics as $album) : ?>
+                <?php $i=0; ?>
+                <?php foreach($album as $pic) : ?>
+                    <?php if($i == 0): ?><div class="row"><?php endif; ?>
+                        <div class="col-sm-2 m-t-20 text-center">
+                            <a class="image-link" title="<?php echo $pic['title']; ?>" href="/img/gallery/album_<?php echo $pic['album_id']; ?>/large/<?php echo $pic['image']; ?>">
+                                <img alt="<?php echo $pic['text']; ?>" src="/img/gallery/album_<?php echo $pic['album_id']; ?>/small/<?php echo $pic['image'] ?>" class="img-responsive" />
+                            </a>
+                            <p><?php echo $pic['title']; ?></p>
+                            <?php if ($pic["subtitle"]): ?>
+                            <p><?php echo $pic['subtitle']; ?></p>
+                            <?php endif; ?>
+                        </div>
+                    <?php $i++; ?>
+                    <?php if ($i == 6): ?></div><?php endif; ?>
+                <?php if ($i == 6) { $i=0; } ?>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+            <?php if ($i <> 6): ?></div><?php endif; ?>
+        <!--</div>-->
+
+    <?php endif; ?>
+
+
+
+
+
+
+
+

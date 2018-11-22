@@ -1,0 +1,35 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="alert alert-info">
+            <h4>SEO = Search Engine Optimization</h4>
+            <p>Zoekmachine optimalisatie (SEO in het Engels) is de techniek om een website hoger te laten scoren bij zoekmachines als Google. Zo bereik je meer mensen die je webpagina nog niet kennen, maar wel op zoek zijn naar je aanbod of informatie.</p>
+            <p><b>Indien onderstaande velden ingevuld worden overschrijven deze de standaard SEO instellingen voor deze pagina.</b></p>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="seotitle">Titel</label>
+            <div class="controls">
+                <input type="text" name="seotitle" id="seotitle" class="form-control" value="<?php echo $this->escape($this->news->getSeoTitle()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="seotags">Trefwoorden</label>
+            <div class="controls">
+                <input type="text" name="seotags" id="seotags" class="form-control" value="<?php echo $this->escape($this->news->getSeoTags()) ?>" />
+                <p class="desc">Keywords scheiden door komma's (bv. appel, peer, banaan, ...).</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="seodescription">Description</label>
+            <div class="controls">
+                <textarea name="seodescription" id="seodescription" rows="4" class="form-control"><?php echo $this->escape($this->news->getSeoDescription()) ?></textarea>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

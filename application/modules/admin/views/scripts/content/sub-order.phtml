@@ -1,0 +1,54 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/order-submenu.js');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/css/customize.css');
+
+$this->headTitle('Pagina volgorde');
+
+$this->placeholder('pageTitle')
+     ->append('Pagina volgorde');
+?>
+
+<h1 class="page-header">
+    Volgorde aanpassen <small>Sleep de submenu-items naar de gewenste positie.</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/content/order" class="btn btn-secondary">Terug naar het hoofdmenu</a>
+            </div>
+
+            <div class="panel-body">
+
+                <form id="dd-form" action="<?php echo $this->url; ?>" method="post">
+
+                    <ul id="sortable-list-content">
+                        <?php foreach($this->items as $item): ?>
+                            <?php if($item->getID() != 0): ?>
+                            <li title="<?php echo $item->getID(); ?>">
+                                <a class="btn btn-default btn-xs"><i class="ti-exchange-vertical"></i></a> <?php echo $item->getTitle(); ?>
+                                <?php if($item->getChildren()): ?>
+                                <div class="pull-right btn-group">
+                                    <a title="Selecteer menu-item" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => 'sub-order', 'id' => $item->getID())) ?>">
+                                        <i class="ti-files"></i>
+                                    </a>
+                                </div>
+                                <?php endif; ?>
+                            </li>
+                            <?php endif; ?>
+                            <?php $order[] = $item->getID(); ?>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <input type="hidden" name="sort_order_submenu" id="sort_order_submenu" value="<?php //echo implode(',',$this->items); ?>" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

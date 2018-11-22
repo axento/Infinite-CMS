@@ -1,0 +1,88 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Nieuwsberichten overzicht');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Nieuwsberichten <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/news/add" class="btn btn-success"><i class="ti-infinite"></i> Nieuwsbericht toevoegen</a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Label</th>
+                        <th>Publicatie</th>
+                        <th>Actief</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <?php foreach ($this->news as $id => $item): ?>
+
+                        <?php
+
+                            $datetime = new Axento_DateTime();
+                            $date = $datetime->dateFormat($item->getDatePublication());
+                        ?>
+
+                        <tr>
+                            <td><?php echo $this->escape($item->getTitle()) ?></td>
+                            <td><?php echo $this->escape($item->getTag()) ?></td>
+                            <td><?php echo $date; ?></td>
+                            <td>
+                                <?php if ($item->getActive()): ?>
+                                    <a class="btn btn-success btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getNid())) ?>"><i class="ti-check"></i></a>
+                                <?php else: ?>
+                                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getNid())) ?>"><i class="ti-na"></i></a>
+                                <?php endif ?>
+                            </td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => 'edit', 'id' => $item->getNid())) ?>">
+                                        <i class="ti-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $item->getNid())) ?>');"  >
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Nieuwsbericht verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u dit nieuwsbericht wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

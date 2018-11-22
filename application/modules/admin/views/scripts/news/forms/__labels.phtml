@@ -1,0 +1,16 @@
+<div class="alert alert-info">
+    <p>Selecteer een label voor dit nieuwsbericht</p>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="control-group">
+            <?php foreach ($this->tags as $id=>$item): ?>
+            <div class="radio">
+                <input type="radio" name="tagID" id="label-<?php echo $id; ?>" value="<?php echo $id; ?>" <?php if($item->getTid() == $this->news->getTid()): ?>checked="checked"<?php endif; ?> />
+                <label id="label-<?php echo $id; ?>"><?php echo $item->getTag(); ?></label>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

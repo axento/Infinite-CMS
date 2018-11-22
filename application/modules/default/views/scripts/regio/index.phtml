@@ -1,0 +1,29 @@
+<?php if ($this->regios): ?>
+    <div id="seo">
+        <div class="container benefits">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Waarom kiezen voor Axento als <b>webdesign studio</b>?</h1>
+                    <p>Axento is een website bouwer die actief is in verschillende regio's. Bekijk hieronder in welke gemeentes wij actief zijn als
+                        <b>webdesigner</b>:</p>
+
+                    <?php foreach ($this->regios as $item): ?>
+                        <?php $link = $this->url(array(
+                                'lng' => $this->lng,
+                                'url' => $item->getUrl(),
+                                'id'  => $item->getID()),
+                            'webdesign', true);  ?>
+
+                        <a href="<?php echo $link ?>" class="btn btn-blue btn-sm"><?php echo $item->getRegio() ?></a>
+
+                    <?php endforeach ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<?php endif ?>

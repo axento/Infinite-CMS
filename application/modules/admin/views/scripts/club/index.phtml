@@ -1,0 +1,81 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Verenigingen overzicht');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Verenigingen <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/club/add" class="btn btn-success"><i class="ti-file"></i> Pagina toevoegen</a>
+                <a href="/admin/club/add-link" class="btn btn-success"><i class="ti-new-window"></i> Link toevoegen</a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Vereniging</th>
+                        <th>Type</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <?php foreach ($this->clubs as $id => $item): ?>
+                        <?php
+                        if ($item->getShortcut() == 1) {
+                            $type = 'new-window';
+                            $action = 'edit-link';
+                        } else {
+                            $type = 'file';
+                            $action = 'edit';
+                        }
+                        ?>
+                        <tr>
+                            <td><?php echo $this->escape($item->getCompany()) ?></td>
+                            <td><i class="ti-<?php echo $type; ?>"></i></td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => $action, 'id' => $item->getID())) ?>">
+                                        <i class="ti-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $item->getID())) ?>');"  >
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Vereniging verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u deze vereniging wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.min.js') ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.init.js') ?>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="title">Naam evenement <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->event->getTitle()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group m-t-20 <?php if ($this->errors->getHtmlErrors('content')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="content">Beschrijving</label>
+            <div class="controls">
+                <textarea name="content" id="contenti" class="mceEditor form-control"><?php echo $this->escape($this->event->getContent()) ?></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+

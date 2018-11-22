@@ -1,0 +1,52 @@
+<?php
+
+$this->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
+$this->headMeta()->setProperty('og:image', 'http://www.bolderberg.be/img/merchant/small/'.$this->merchant->getImage());
+
+?>
+
+<div class="row m-t-20">
+    <a href="/<?php echo $this->lng; ?>/handelaars" class="btn btn-secondary"><i class="fa fa-angle-double-left"></i> Terug naar het overzicht</a>
+</div>
+
+<div class="row">
+    <div class="col-sm-9">
+        <h1><?php echo $this->merchant->getCompany() ?></h1>
+        <p>
+            <?php echo $this->merchant->getStreet() ?> <?php echo $this->merchant->getNumber() ?>
+            <?php if($this->merchant->getBox()): ?>
+                bus <?php echo $this->merchant->getBox() ?>
+            <?php endif; ?><br />
+            <?php echo $this->merchant->getZip() ?> <?php echo $this->merchant->getCity() ?>
+        </p>
+    </div>
+    <div class="col-sm-3">
+        <?php if($this->merchant->getImage()): ?>
+        <img src="/img/merchants/small/<?php echo $this->merchant->getImage(); ?>" alt="<?php echo $this->merchant->getCompany(); ?>" class="img-responsive" />
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if ($this->merchant->getContent()): ?>
+    <div class="row m-t-20">
+        <div class="col-sm-12">
+            <?php echo $this->merchant->getContent(); ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div class="row m-t-20">
+    <div class="col-sm-12">
+        <h3>Contactgegevens</h3>
+        <?php if($this->merchant->getContact()): ?><i class="fa fa-user"></i> <?php echo $this->merchant->getContact(); ?><br /><?php endif; ?>
+        <?php if($this->merchant->getPhone()): ?><i class="fa fa-phone"></i> <?php echo $this->merchant->getPhone(); ?><br /><?php endif; ?>
+        <?php if($this->merchant->getEmail()): ?><i class="fa fa-envelope"></i> <a href="mailto:<?php echo $this->merchant->getEmail(); ?>"><?php echo $this->merchant->getEmail(); ?></a><br /><?php endif; ?>
+        <?php if($this->merchant->getWebsite()): ?><i class="fa fa-desktop"></i> <a href="<?php echo $this->merchant->getWebsite(); ?>" target="_blank"><?php echo $this->merchant->getWebsite(); ?></a><?php endif; ?>
+    </div>
+</div>
+
+<div class="row m-t-50">
+    <div class="col-sm-12">
+        <div class="addthis_inline_share_toolbox"></div>
+    </div>
+</div>

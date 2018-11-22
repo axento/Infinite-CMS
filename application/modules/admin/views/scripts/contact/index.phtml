@@ -1,0 +1,72 @@
+<?php
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+$this->headTitle('Contact');
+?>
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Contactformulier <small>aanvragen</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Tijdstip</th>
+                        <th>Naam</th>
+                        <th>Contactgegevens</th>
+                        <th>Vraag</th>
+                        <th>Taal</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->contacts as $contact): ?>
+                        <?php $date = new Zend_Date($contact->getDatetime(), false, "nl_BE"); ?>
+                        <tr>
+                            <td style="width:100px;"><?php echo $date->toString("dd-MM-YYYY"); ?><br />
+                                <?php echo $date->toString("HH:mm"); ?>
+                            </td>
+                            <td><?php echo $this->escape($contact->getName()) ?></td>
+                            <td><?php echo $this->escape($contact->getEmail()) ?><br />
+                                <?php echo $this->escape($contact->getPhone()) ?>
+                            </td>
+                            <td><?php echo $this->escape($contact->getMessage()) ?></td>
+                            <td class="text-center"><?php echo $this->escape($contact->getLng()) ?></td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $contact->getID())) ?>');"  >
+                                        <i class="ti-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Contact verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u dit contact wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

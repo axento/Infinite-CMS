@@ -1,0 +1,67 @@
+<?php
+
+$this->headTitle('Gebruiker aanpassen');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-wizard/js/bootstrap-wizard.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/form-wizards.demo.min.js');
+?>
+
+<?php $this->headScript()->captureStart() ?>
+
+$(document).ready(function() {
+FormWizards.init();
+});
+<?php $this->headScript()->captureEnd() ?>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Gebruiker aanpassen
+        </h1>
+    </div>
+    <div class="col-md-4 text-right">
+        <a href="/admin/account/index" class="btn btn-secondary">Terug naar het overzicht</a>
+    </div>
+</div>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <div class="wizard-header">
+        <ul class="nav nav-pills">
+            <li><a href="#tab-common" data-toggle="tab" class="active">ALGEMEEN <?php if ($this->errors->getTabErrors('common')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-password" data-toggle="tab">PASWOORD <?php if ($this->errors->getTabErrors('password')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-group" data-toggle="tab">GEBRUIKERSGROEP <?php if ($this->errors->getTabErrors('group')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-save" data-toggle="tab">OPSLAAN</a></li>
+        </ul>
+    </div>
+
+    <form method="post" action="<?php echo $this->url() ?>" name="wizard_form" enctype="multipart/form-data" class="form-horizontal">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab-common">
+                <?php echo $this->render('account/forms/__common.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-password">
+                <?php echo $this->render('account/forms/__password.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-group">
+                <?php echo $this->render('account/forms/__group.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-save">
+                <?php echo $this->render('account/forms/__save.phtml') ?>
+            </div>
+
+
+            <div class="wizard-footer">
+                <a href="javascript:;" class="btn btn-default wizard-prev-btn btn-rounded">Vorige</a>
+                <a href="javascript:;" class="btn btn-primary wizard-next-btn btn-rounded">Volgende</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

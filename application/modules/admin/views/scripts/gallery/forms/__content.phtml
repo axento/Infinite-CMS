@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label">Titel album <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="title" class="form-control" value="<?php echo $this->escape($this->album->getTitle()); ?>" />
+                <span class="desc">Geef een naam op voor het album</span>
+            </div>
+        </div>
+    </div>
+</div>

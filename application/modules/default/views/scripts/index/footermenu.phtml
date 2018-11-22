@@ -1,0 +1,28 @@
+<?php
+
+$html = array();
+$html[] =' <ul>';
+
+foreach ($this->pages as $page) {
+    // visibility of the page
+    if (!$page->isInNavigation()) {
+        continue;
+    }
+    if ($page->isActive()) {
+        $class = 'active';
+    } else $class = '';
+
+    // header
+
+    $html[] = '<li class="'.$class.'">';
+    $html[] = '<a href="' . $this->url(array('url' => $page->getURL()), 'content', false, false) . '">';
+    $html[] = $page->getTitle();
+    $html[] = '</a>';
+    $html[] = "</li>";
+}
+
+$html[] = '</ul>';
+
+echo join(PHP_EOL, $html);
+
+?>

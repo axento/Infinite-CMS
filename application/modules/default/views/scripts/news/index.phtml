@@ -1,0 +1,44 @@
+<?php if($this->news): ?>
+<?php foreach ($this->paginator as $item): ?>
+<?php $link = $this->url(array(
+    'lng' => $this->lng,
+    'url' => $item->getUrl(),
+    'id'  => $item->getNid()),
+    'news-detail', true);  ?>
+
+<div class="news-item">
+
+    <?php if ($item->getImage()): ?>
+    <div class="row">
+        <div class="col-sm-12">
+            <img src="/img/news/large/<?php echo $this->escape($item->getImage()) ?>" alt="<?php echo $this->escape($item->getTitle()) ?>" class="img-responsive m-t-20" />
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <h1><?php echo $this->escape($item->getTitle()) ?></h1>
+            <?php echo $item->getSummary() ?>
+        </div>
+
+    </div>
+    <div class="row p-t-20 m-b-20">
+        <div class="col-sm-6">
+            <div class="addthis_inline_share_toolbox"></div>
+        </div>
+        <div class="col-sm-6 text-right">
+            <a href="<?php echo $link ?>" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-square"></i> lees verder</a>
+        </div>
+    </div>
+</div>
+
+<?php endforeach; ?>
+
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'system/pagination.phtml'); ?>
+<?php else: ?>
+<div class="alert alert-warning m-t-40">
+    <p>Het nieuwsarchief is leeg.</p>
+</div>
+<?php endif; ?>

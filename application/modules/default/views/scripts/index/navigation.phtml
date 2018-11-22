@@ -1,0 +1,78 @@
+<?php
+
+$html = array();
+
+$html[] =' <ul class="nav navbar-nav">';
+
+    foreach ($this->pages as $page) {
+    // visibility of the page
+    if (!$page->isInNavigation()) {
+        continue;
+    }
+    if ($page->isActive()) {
+        $class = 'active';
+    } else $class = '';
+
+
+
+    // header
+    if ($page->getChildren()) {
+        $html[] = '<li class="'.$class.' nav-item dropdown">';
+
+        if ($page->getContentType() == 'link'){
+            $html[] = '<a href="' .  $page->getLink() . '" target="_blank" class="dropdown-toggle nav-link" data-toggle="dropdown">';
+        } else {
+            $html[] = '<a href="' .  $this->url(array('url' => $page->getURL()), 'content', false, false) . '" class="dropdown-toggle nav-link" data-toggle="dropdown">';
+        }
+
+        $html[] = $page->getTitle();
+        //$html[] = '<b class="caret"></b>';
+    } else {
+        $html[] = '<li class="'.$class.' nav-item">';
+
+        if ($page->getContentType() == 'link'){
+            $html[] = '<a href="' .  $page->getLink() . '" target="_blank" class="nav-link"">';
+        } else {
+            $html[] = '<a href="' . $this->url(array('url' => $page->getURL()), 'content', false, false) . '" class="nav-link">';
+        }
+
+
+        $html[] = $page->getTitle();
+    }
+
+    $html[] = '</a>';
+
+    if (!$page->getChildren()) {
+    $html[] = '</li>';
+    continue;
+    }
+
+    $html[] = '<ul class="dropdown-menu">';
+
+        foreach ($page->getChildren() as $subpage) {
+        // visibility of the sub-page
+        if (!$subpage->isInNavigation()) {
+        continue;
+        }
+
+
+
+        $html[] = '<li' . ($subpage->isActive() ? ' class="active"' : '') . '>';
+        if ($subpage->getContentType() == 'link'){
+            $html[] = '<a href="' . $subpage->getLink() . '" target="_blank" class="dropdown-item">';
+        } else {
+            $html[] = '<a href="' . $this->url(array('url' => $subpage->getURL()), 'content', false, false) . '" class="dropdown-item">';
+        }
+
+            $html[] = $subpage->getTitle();
+            $html[] = "</a>";
+        $html[] = "</li>";
+        }
+
+        $html[] = "</ul>";
+    $html[] = "</li>";
+    }
+
+$html[] = '</ul>';
+
+echo join(PHP_EOL, $html);

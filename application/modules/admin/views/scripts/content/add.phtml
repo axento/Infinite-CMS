@@ -1,0 +1,193 @@
+<?php
+
+$this->headTitle('Pagina toevoegen');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-wizard/js/bootstrap-wizard.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/form-wizards.demo.min.js');
+?>
+
+<?php $this->headScript()->captureStart() ?>
+
+<?php if ($this->page->getId() !== 0): ?>
+
+function generateUrl() {
+    var title = '';
+    $.get('<?php echo $this->url(array('controller' => 'content', 'action' => 'get-url')) ?>', { title: $("#title").val(), parentID: $("#parentID").val() }, function(data) {
+    $("#url").html(data);
+    });
+}
+
+$(function() {
+
+	$("#title").keyup(function() {
+        generateUrl();
+  	});
+
+	$("#parentID").change(function() {
+        generateUrl();
+  	});
+
+    generateUrl();
+});
+
+<?php endif ?>
+$(document).ready(function() {
+FormWizards.init();
+FormSummernote.init();
+});
+<?php $this->headScript()->captureEnd() ?>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Pagina toevoegen <small><?php echo $_SESSION['System']['lng']; ?></small>
+        </h1>
+    </div>
+    <div class="col-md-4 text-right">
+        <a href="/admin/content/index" class="btn btn-secondary">Terug naar het overzicht</a>
+    </div>
+</div>
+
+<?php if ($this->pagetype == 'page'): ?>
+<div class="row m-t-20">
+    <div class="col-md-12">
+        <div class="well" id="link">
+            <span class="badge badge-primary"><i class="ti-link"></i> Pagina URL</span>
+            <?php echo Zend_Registry::get('config')->system->web->url ?><span id="url"></span>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <div class="wizard-header">
+        <ul class="nav nav-pills">
+            <?php if ($this->pagetype == 'page'): ?>
+                <li><a href="#tab-content" data-toggle="tab" class="active">INHOUD <?php if ($this->errors->getTabErrors('content')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'module'): ?>
+                <li><a href="#tab-external" data-toggle="tab">EXTERNE LINK <?php if ($this->errors->getTabErrors('external')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'link'): ?>
+                <li><a href="#tab-link" data-toggle="tab">INHOUD <?php if ($this->errors->getTabErrors('link')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <li><a href="#tab-menu" data-toggle="tab">MENU <?php if ($this->errors->getTabErrors('menu')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+
+            <?php if ($this->pagetype == 'page'): ?>
+                <li><a href="#tab-video" data-toggle="tab">VIDEO <?php if ($this->errors->getTabErrors('video')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page'): ?>
+                <li><a href="#tab-layout" data-toggle="tab">LAY-OUT <?php if ($this->errors->getTabErrors('layout')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if(Zend_Registry::get('config')->content->tab->acl): ?>
+            <li><a href="#tab-acl" data-toggle="tab">RECHTEN <?php if ($this->errors->getTabErrors('acl')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->header): ?>
+                <li><a href="#tab-header" data-toggle="tab">HEADER <?php if ($this->errors->getTabErrors('header')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->gallery): ?>
+                <li><a href="#tab-gallery" data-toggle="tab">GALERIJEN <?php if ($this->errors->getTabErrors('galleries')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->menus): ?>
+                <li><a href="#tab-menus" data-toggle="tab">MENUKAARTEN <?php if ($this->errors->getTabErrors('menus')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page'): ?>
+            <li><a href="#tab-seo" data-toggle="tab">SEO <?php if ($this->errors->getTabErrors('seo')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <?php endif; ?>
+
+            <li><a href="#tab-save" data-toggle="tab">OPSLAAN</a></li>
+        </ul>
+    </div>
+
+    <form method="post" action="<?php echo $this->url() ?>" name="wizard_form" enctype="multipart/form-data" class="form-horizontal">
+
+        <div class="wizard-content tab-content">
+
+            <?php if ($this->pagetype == 'page'): ?>
+            <div class="tab-pane active" id="tab-content">
+                <?php echo $this->render('content/forms/__content.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'module'): ?>
+            <div class="tab-pane" id="tab-external">
+                <?php echo $this->render('content/forms/__external.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'link'): ?>
+                <div class="tab-pane" id="tab-link">
+                    <?php echo $this->render('content/forms/__link.phtml') ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="tab-pane" id="tab-menu">
+                <?php echo $this->render('content/forms/__menu.phtml') ?>
+            </div>
+
+            <?php if ($this->pagetype == 'page'): ?>
+                <div class="tab-pane" id="tab-video">
+                    <?php echo $this->render('content/forms/__video.phtml') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page'): ?>
+            <div class="tab-pane" id="tab-layout">
+                <?php echo $this->render('content/forms/__layout.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if(Zend_Registry::get('config')->content->tab->acl): ?>
+            <div class="tab-pane" id="tab-acl">
+                <?php echo $this->render('content/forms/__acl.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->header): ?>
+                <div class="tab-pane" id="tab-header">
+                    <?php echo $this->render('content/forms/__header.phtml') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->gallery): ?>
+            <div class="tab-pane" id="tab-gallery">
+                <?php echo $this->render('content/forms/__gallery.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page' && Zend_Registry::get('config')->content->tab->menus): ?>
+            <div class="tab-pane" id="tab-menus">
+                <?php echo $this->render('content/forms/__menus.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($this->pagetype == 'page'): ?>
+            <div class="tab-pane" id="tab-seo">
+                <?php echo $this->render('content/forms/__seo.phtml') ?>
+            </div>
+            <?php endif; ?>
+
+            <div class="tab-pane" id="tab-save">
+                <?php echo $this->render('content/forms/__save.phtml') ?>
+            </div>
+
+
+            <div class="wizard-footer">
+                <a href="javascript:;" class="btn btn-default wizard-prev-btn btn-rounded">Vorige</a>
+                <a href="javascript:;" class="btn btn-primary wizard-next-btn btn-rounded">Volgende</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

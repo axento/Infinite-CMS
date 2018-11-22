@@ -1,0 +1,65 @@
+<?php
+
+$this->headTitle('Header aanpassen');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-wizard/js/bootstrap-wizard.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/form-wizards.demo.min.js');
+
+$this->headScript()->captureStart() ?>
+
+$(document).ready(function() {
+FormWizards.init();
+});
+<?php $this->headScript()->captureEnd() ?>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="page-header">
+            Header aanpassen
+        </h1>
+    </div>
+    <div class="col-md-4 text-right">
+        <a href="/admin/header/index" class="btn btn-secondary">Terug naar het overzicht</a>
+    </div>
+</div>
+
+<div id="rootwizard" class="wizard wizard-full-width">
+
+    <div class="wizard-header">
+        <ul class="nav nav-pills">
+            <li><a href="#tab-image" data-toggle="tab">AFBEELDING <?php if ($this->errors->getTabErrors('image')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-content" data-toggle="tab">INHOUD <?php if ($this->errors->getTabErrors('content')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-position" data-toggle="tab">POSITIES <?php if ($this->errors->getTabErrors('position')): ?><span class="label label-danger">!</span><?php endif; ?></a></li>
+            <li><a href="#tab-save" data-toggle="tab">OPSLAAN</a></li>
+        </ul>
+    </div>
+
+    <form method="post" action="<?php echo $this->url() ?>" name="wizard_form" enctype="multipart/form-data" class="form-horizontal">
+
+        <div class="wizard-content tab-content">
+
+            <div class="tab-pane active" id="tab-image">
+                <?php echo $this->render('header/forms/__image.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-content">
+                <?php echo $this->render('header/forms/__content.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-position">
+                <?php echo $this->render('header/forms/__position.phtml') ?>
+            </div>
+
+            <div class="tab-pane" id="tab-save">
+                <?php echo $this->render('header/forms/__save.phtml') ?>
+            </div>
+
+            <div class="wizard-footer">
+                <a href="javascript:;" class="btn btn-default wizard-prev-btn btn-rounded">Vorige</a>
+                <a href="javascript:;" class="btn btn-primary wizard-next-btn btn-rounded">Volgende</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

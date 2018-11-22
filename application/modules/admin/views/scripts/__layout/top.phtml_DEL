@@ -1,0 +1,126 @@
+<?php
+$config = Zend_Registry::get('config');
+$userNamespace = new Zend_Session_Namespace('userNamespace');
+?>
+
+<div id="topbar">
+	
+	<div class="container">
+
+		<div id="top-nav">
+
+			<ul class="pull-right">
+				<li><i class="icon-user"></i> Aangemeld als <?php echo $userNamespace->fname.' '.$userNamespace->name; ?></li>
+				<li><a href="/admin/account/logout"><i class="icon-off"></i>Afmelden</a></li>
+			</ul>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+<div id="header">
+	
+	<div class="container">
+		
+		<a href="/admin" class="brand">SmartCMS</a>
+		
+		<a href="javascript:;" class="btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        	<i class="icon-reorder"></i>
+      	</a>
+	
+		<div class="nav-collapse">
+			<ul id="main-nav" class="nav pull-right">
+				<li class="nav-icon <?php if($this->homeTab == 'active'): ?>active<?php endif; ?>">
+					<a href="/admin">
+						<i class="icon-home"></i>
+						<span>Home</span>        					
+					</a>
+				</li>
+
+                <li class="dropdown <?php if($this->contentTab == 'active'): ?>active<?php endif; ?>">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-book"></i>
+                        <span>Inhoud</span>
+                        <b class="caret"></b>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/content"><i class="icon-file"></i><span>Pagina's</span></a></li>
+                        <?php if($config->modules->tab->blocks): ?>
+                        <li><a href="/admin/contentblock/index"><i class="icon-copy"></i><span>Tekstblokken</span></a></li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+                
+                <?php if($config->modules->tab->modules): ?>
+                <li class="dropdown <?php if($this->modulesTab == 'active'): ?>active<?php endif; ?>">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-th"></i>
+						<span>Modules</span> 
+						<b class="caret"></b>
+					</a>	
+				
+					<ul class="dropdown-menu">
+                        <?php foreach ($config->modules->enabled as $module => $enabled): ?>
+                            <?php if ($enabled && $enabled != 'false'): ?>
+                                <li><a href="/admin/<?php echo $module; ?>/index"><?php echo $config->modules->$module->title; ?></a></li>
+                            <?php endif ?>
+                        <?php endforeach ?>
+					</ul>    				
+				</li>
+                <?php endif; ?>
+                
+                <?php if($config->modules->tab->users): ?>
+                <li class="dropdown <?php if($this->rightsTab == 'active'): ?>active<?php endif; ?>">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-lock"></i><span>Rechten</span> <b class="caret"></b></a>
+				
+					<ul class="dropdown-menu">							
+						<li><a href="/admin/account"><i class="icon-user"></i><span>Gebruikers</span></a></li>
+						<li><a href="/admin/group"><i class="icon-chevron-up"></i><span>Gebruikersgroepen</span></a></li>
+					</ul>    				
+				</li>
+                <?php endif; ?>
+			</ul>
+			
+		</div> 
+
+	</div> 
+	
+</div> 
+
+
+
+
+<div id="masthead">
+	
+	<div class="container">
+		
+		<div class="masthead-pad">
+			
+			<div class="masthead-text">
+				<h2><?php echo $this->placeholder('pageTitle'); ?></h2>
+				<p><?php echo $this->placeholder('pageSubTitle'); ?></p>
+			</div> 
+
+            <?php if (count($this->lngs) > 1) : ?>
+            <div class="masthead-language">
+                <form name="language" id="language" method="post" action="<?php echo $this->url(array('controller' => 'settings', 'action' => 'set-language'), null, true) ?>" style="padding: 5px;">
+                    <?php $alng = $_SESSION['System']['lng']; ?>
+                    <select name="language" onchange="document.getElementById('language').submit();">
+                        <?php foreach($this->lngs as $key => $lng) : ?>
+                        <option value="<?php echo $key ?>" <?php if ($key == $alng) { echo 'selected="selected"'; } ?>><?php echo $lng ?>&nbsp;</option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="hidden" name="goto" value="<?php echo $this->url() ?>" />
+
+                </form>
+            </div>
+            <?php endif; ?>
+			
+		</div>
+		
+	</div>
+	
+</div>

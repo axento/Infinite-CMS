@@ -1,0 +1,28 @@
+<div class="alert alert-info">
+    <p>Koppel &eacute;&eacute;n of meerdere menukaarten aan deze pagina.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="control-group">
+            <?php foreach ($this->menus as $id=>$menu): ?>
+
+                <?php
+                if(in_array($menu->getID(),$this->page->getMenus())) {
+                    $checked = true;
+                } else {
+                    $checked = false;
+                }
+                ?>
+
+                <div class="checkbox">
+                    <input type="checkbox" name="menus[]" id="menu-<?php echo $menu->getID(); ?>" value="<?php echo $menu->getID(); ?>" <?php if($checked): ?>checked="checked"<?php endif; ?> />
+                    <label for="menu-<?php echo $menu->getID(); ?>"><?php echo $menu->getTitle(); ?></label>
+                </div>
+
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+

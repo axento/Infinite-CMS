@@ -1,0 +1,38 @@
+<?php
+
+$this->headTitle('Titel bewerken');
+
+$this->placeholder('pageTitle')
+    ->append('Titel bewerken');
+
+?>
+
+<div class="row">
+
+    <div class="col-sm-12">
+        <form method="post" action="<?php echo $this->url() ?>" enctype="multipart/form-data" class="form-horizontal">
+            <input type="hidden" value="<?php echo $this->picture_id ?>" id="picture_id" name="picture_id" />
+
+            <div class="control-group">
+                <label class="control-label" for="title">Titel</label>
+                <div class="controls">
+                    <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->picture->getTitle()); ?>" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="subtitle">Subtitel</label>
+                <div class="controls">
+                    <input type="text" name="subtitle" id="subtitle" class="form-control" value="<?php echo $this->escape($this->picture->getSubtitle()); ?>" />
+                </div>
+            </div>
+
+            <div class="form-actions m-t-20">
+                <button type="submit" class="btn btn-primary"><i class="ti-pencil"></i> Gegevens wijzigen</button>
+                <a href="javascript:history.back()" class="btn btn-secondary">Annuleren</a>
+            </div>
+
+        </form>
+    </div>
+
+</div>

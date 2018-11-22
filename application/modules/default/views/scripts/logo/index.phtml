@@ -1,0 +1,11 @@
+<div id="masonry">
+    <div class="row">
+        <?php foreach ($this->logos as $logo): ?>
+            <div class="client">
+                <?php if($logo->getURL()): ?><a href="http://<?php echo $logo->getURL(); ?>" target="_blank"><?php endif; ?>
+                    <img src="/img/logo/<?php echo $logo->getLogo(); ?>" alt="<?php echo $logo->getLogo(); ?>" class="img-responsive" />
+                <?php if($logo->getURL()): ?></a><?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

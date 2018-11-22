@@ -1,0 +1,58 @@
+<h1>Handelaars, bedrijven en vrije beroepen</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <form class="form-inline" method="post" action="<?php echo $this->url(); ?>">
+                <div class="form-group">
+                    <label>Filter</label>
+                    <select name="typeID" class="form-control input-sm">
+                        <option value="0">Selecteer een sector</option>
+                        <?php foreach($this->types as $type): ?>
+                            <option value="<?php echo $type->getID(); ?>" <?php if($type->getID() == $this->typeID): ?>selected="selected"<?php endif; ?>><?php echo $type->getType(); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="submit" class="btn btn-primary btn-sm">Zoeken</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <?php if ($this->merchants): ?>
+            <table id="table-merchants" class="table m-t-20">
+
+                <tbody>
+                <?php foreach($this->merchants as $item): ?>
+
+                    <?php
+
+                    if ($item->getShortcut() == 1) {
+                        $link = $item->getWebsite();
+                    } else {
+                        $link = $this->url(array(
+                            'lng' => $this->lng,
+                            'url' => $item->getUrl(),
+                            'id'  => $item->getID()),
+                            'merchant-show', true);
+                    }
+
+                     ?>
+
+                    <tr>
+                        <td>
+                            <a href="<?php echo $link; ?>" <?php if($item->getShortcut() == 1): ?>target="_blank"<?php endif; ?>><?php echo $item->getCompany(); ?></a> <?php if($item->getShortcut() == 1): ?> <i class="fa fa-sign-out text-muted"></i><?php endif; ?>
+                        </td>
+                        <td>
+                            <?php echo $item->getType(); ?>
+                        </td>
+                    </tr>
+
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>

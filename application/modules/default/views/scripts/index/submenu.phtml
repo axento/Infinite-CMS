@@ -1,0 +1,29 @@
+<?php if (count($this->submenus) > 0): ?>
+<div class="submenu">
+    <h2>
+        <?php if ($this->pageTitle): ?>
+            <?php echo $this->pageTitle; ?>
+        <?php else: ?>
+            <?php echo $this->page->getTitle(); ?>
+        <?php endif; ?>
+    </h2>
+
+    <ul>
+    <?php foreach ($this->submenus as $page): ?>
+
+        <?php
+        $class = '';
+        if ($page->getId() == $this->currentContentID):
+            $class = 'active';
+        endif;
+        ?>
+        <?php if ($page->isAllowed($identity)): ?>
+            <li>
+                <a href="<?php echo $this->url(array('url' => $page->getURL()), 'content', false, false) ?>" class="btn btn-submenu btn-block <?php echo $class; ?>"><?php echo  $page->getTitle() ?></a>
+            </li>
+        <?php endif ?>
+
+    <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

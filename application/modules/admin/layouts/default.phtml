@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <?php echo $this->action('head' , 'index' , 'admin' , array('page' => $this->page, 'lng' => $this->lng)) ?>
+</head>
+<body>
+<!-- BEGIN #page-container -->
+<div id="page-container" class="page-header-fixed page-sidebar-fixed">
+    <!-- BEGIN #header -->
+    <?php echo $this->action('header' , 'index' , 'admin' , array('page' => $this->page, 'lng' => $this->lng)) ?>
+    <!-- END #header -->
+
+    <!-- BEGIN #sidebar -->
+    <?php echo $this->action('navigation' , 'index' , 'admin' , array('page' => $this->page, 'lng' => $this->lng)) ?>
+    <!-- END #sidebar -->
+
+    <!-- BEGIN #content -->
+    <div id="content" class="content">
+        <?php echo $this->layout()->content ?>
+    </div>
+
+    <?php //echo $this->action('dashboard' , 'index' , 'admin' , array('page' => $this->page, 'lng' => $this->lng)) ?>
+    <!-- END #content -->
+
+    <!-- BEGIN btn-scroll-top -->
+    <a href="#" data-click="scroll-top" class="btn-scroll-top fade"><i class="ti-arrow-up"></i></a>
+    <!-- END btn-scroll-top -->
+</div>
+<!-- END #page-container -->
+
+<?php echo $this->render('__layout/footer.phtml') ?>
+</body>
+</html>

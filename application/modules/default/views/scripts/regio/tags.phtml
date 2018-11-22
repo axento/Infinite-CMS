@@ -1,0 +1,20 @@
+<?php if ($this->regios): ?>
+
+    <div class="row tags">
+        <div class="col-md-12">
+            <ul>
+            <?php foreach ($this->regios as $item): ?>
+                <?php $link = $this->url(array(
+                        'lng' => $this->lng,
+                        'url' => $item->getUrl(),
+                        'id'  => $item->getID()),
+                    'webdesign', true);  ?>
+
+                <li><a href="<?php echo $link ?>">Webdesign <?php echo $item->getRegio() ?></a></li>
+
+            <?php endforeach ?>
+            </ul>
+        </div>
+    </div>
+
+<?php endif ?>

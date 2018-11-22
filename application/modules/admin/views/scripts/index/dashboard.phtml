@@ -1,0 +1,159 @@
+<?php
+$user = Zend_Auth::getInstance()->getIdentity();
+$userNamespace = new Zend_Session_Namespace('userNamespace');
+$this->headTitle('Dashboard');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/chart/chart-js/Chart.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/dashboard.demo.min.js');
+?>
+
+<?php $this->headScript()->captureStart() ?>
+$(document).ready(function() {
+Dashboard.init();
+});
+<?php $this->headScript()->captureEnd() ?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+    <h1 class="page-header">
+        Dashboard
+    </h1>
+    <!-- BEGIN row -->
+    <div class="row">
+        <!-- BEGIN col-6 -->
+        <div class="col-lg-6 col-sm-12">
+            <!-- BEGIN widget -->
+            <div class="widget widget-card widget-card-rowspan2 dynamic-xs inverse-mode with-min-height">
+                <!-- BEGIN widget-card-cover -->
+                <div class="widget-card-cover">
+                    <div class="cover-bg"></div>
+                    <img src="/assets/img/dashboard-cover.jpg" alt="" />
+                </div>
+                <!-- END widget-card-cover -->
+                <!-- BEGIN widget-card-content -->
+
+                <!-- END widget-card-content -->
+                <!-- BEGIN widget-card-content -->
+                <div class="widget-card-content bottom p-b-5">
+                    <div class="text-center">
+                        <h3 class="m-b-0">Welkom <?php echo $userNamespace->fname.' '.$userNamespace->name; ?></h3>
+                    </div>
+                    <!-- BEGIN row -->
+                    <div class="row">
+                        <!-- BEGIN col-6 -->
+                        <div class="col-12">
+                            <!-- BEGIN widget -->
+                            <ul class="widget widget-list m-b-0 no-bg inverse-mode">
+                                <li>
+                                    <!-- BEGIN widget-list-container -->
+                                    <a href="/admin/index/clearcache" class="widget-list-container">
+                                        <div class="widget-list-media icon p-l-0">
+                                            <i class="ti-loop bg-gradient-blue"></i>
+                                        </div>
+                                        <div class="widget-list-content">
+                                            <h4 class="widget-title">Reset</h4>
+                                            <div class="widget-desc hidden-xs">Cachegeheugen leegmaken</div>
+                                        </div>
+                                    </a>
+                                    <!-- END widget-list-container -->
+                                </li>
+                                <li>
+                                    <!-- BEGIN widget-list-container -->
+                                    <a href="/admin/index/sitemap" class="widget-list-container">
+                                        <div class="widget-list-media icon p-l-0">
+                                            <i class="ti-map-alt bg-gradient-purple"></i>
+                                        </div>
+                                        <div class="widget-list-content">
+                                            <h4 class="widget-title">Sitemap</h4>
+                                            <div class="widget-desc hidden-xs">Maak een nieuwe sitemap aan</div>
+                                        </div>
+                                    </a>
+                                    <!-- END widget-list-container -->
+                                </li>
+                                <li>
+                                    <!-- BEGIN widget-list-container -->
+                                    <a href="/manual/handleiding-smartcms.pdf" target="_blank" class="widget-list-container">
+                                        <div class="widget-list-media icon p-l-0">
+                                            <i class="ti-bookmark-alt bg-gradient-green"></i>
+                                        </div>
+                                        <div class="widget-list-content">
+                                            <h4 class="widget-title">Handleiding</h4>
+                                            <div class="widget-desc hidden-xs">Infinite CMS</div>
+                                        </div>
+                                    </a>
+                                    <!-- END widget-list-container -->
+                                </li>
+                            </ul>
+                            <!-- END widget -->
+                        </div>
+                        <!-- END col-6 -->
+                        <!-- BEGIN col-6 -->
+
+                        <!-- END col-6 -->
+                    </div>
+                    <!-- END row -->
+                </div>
+                <!-- END widget-card-content -->
+            </div>
+            <!-- END widget -->
+        </div>
+        <!-- END col-6 -->
+        <!-- BEGIN col-3 -->
+        <div class="col-lg-3 col-sm-6">
+            <!-- BEGIN widget -->
+            <div class="widget widget-card inverse-mode with-min-height">
+                <!-- BEGIN widget-card-cover -->
+                <div class="widget-card-cover">
+                    <div class="cover-bg with-gradient"></div>
+                    <img src="/assets/img/dashboard-cover-1.jpg" alt="" />
+                </div>
+                <!-- END widget-card-cover -->
+                <!-- BEGIN widget-card-content -->
+                <div class="widget-card-content">
+
+                    <h4 class="widget-title"><b>axento.be</b></h4>
+                </div>
+                <!-- END widget-card-content -->
+                <!-- BEGIN widget-card-content -->
+                <div class="widget-card-content bottom">
+                    <div class="widget-card-icon bg-gradient-blue"><i class="ti-location-pin"></i></div>
+                    <div class="widget-card-info">
+                        <p>
+                            axento.be<br />
+                            Holleweg 19<br />
+                            3550 Heusden-Zolder
+                        </p>
+                    </div>
+                </div>
+                <!-- END widget-card-content -->
+            </div>
+            <!-- END widget -->
+            <!-- BEGIN widget -->
+            <div class="widget widget-card inverse-mode with-min-height">
+                <!-- BEGIN widget-card-cover -->
+                <div class="widget-card-cover">
+                    <div class="cover-bg with-gradient"></div>
+                    <img src="/assets/img/dashboard-cover-2.jpg" alt="" />
+                </div>
+                <!-- END widget-card-cover -->
+                <!-- BEGIN widget-card-content -->
+                <div class="widget-card-content">
+                    <h4 class="widget-title">CONTACT</h4>
+                </div>
+                <!-- END widget-card-content -->
+                <!-- BEGIN widget-card-content -->
+                <div class="widget-card-content bottom">
+                    <div class="widget-card-icon bg-gradient-orange"><i class="ti-email"></i></div>
+                    <div class="widget-card-info">
+                        <h4 class="widget-title"><a href="mailto:hallo@axento.be">hallo@axento.be</a></h4>
+                        <h4 class="widget-title"><a href="https://www.axento.be" target="_blank">www.axento.be</a></h4>
+                    </div>
+                </div>
+                <!-- END widget-card-content -->
+            </div>
+            <!-- END widget -->
+        </div>
+        <!-- END col-3 -->
+
+    </div>
+    <!-- END row -->
+

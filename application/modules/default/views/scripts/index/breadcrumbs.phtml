@@ -1,0 +1,21 @@
+<?php if ($this->breadcrumbs) : ?>
+<ol class="col-md-8 breadcrumb">
+    U BENT HIER :&nbsp;
+    <?php foreach($this->breadcrumbs as $key => $breadcrumb) : ?>
+
+        <?php //echo $key == 0 ? '' : '&nbsp; • &nbsp;' ?>
+        <?php
+            if ($breadcrumb['active']) {
+                $class = 'active';
+            } else { $class = ''; }
+            if (strlen($this->placeholder('breadcrumbs'))) {
+                $class = '';
+            }
+        ?>
+        <li class="<?php echo $class; ?>"><a href="<?php echo $this->url(array('url' => $breadcrumb['url']), 'content', false, false) ?>"><?php echo $breadcrumb['label'] ?></a></li>
+    <?php endforeach; ?>
+    <?php if (strlen($this->placeholder('breadcrumbs'))): ?>
+        <li class="active"><a href="<?php echo $this->url(); ?>"><?php echo substr($this->placeholder('breadcrumbs'),0,70); ?></a></li>
+    <?php endif ?>
+</ol>
+<?php endif ?>

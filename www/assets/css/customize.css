@@ -1,0 +1,43 @@
+/*------------------------------------------------------------------
+customize.css
+
+	Version:		1.0
+	Last change:	02/02/2018
+-------------------------------------------------------------------*/
+
+/* Ordenen van menu-items */
+#sortable-list		{ padding:0; }
+#sortable-list li	{ padding:4px 8px; color:#000; cursor:move; list-style:none; width:500px; background:#ddd; margin:10px 0;}
+
+/* Ordenen van afbeeldingen fotogalerij */
+#sortable-list-pics,
+#sortable-list-header,
+#sortable-list-content { padding:0; }
+
+#sortable-list-pics li,
+#sortable-list-header li,
+#sortable-list-content li {
+    padding:8px;
+    cursor:move;
+    list-style:none;
+    background:#f5f5f5;
+    border: 1px solid #e5e5e5;
+    margin:10px 0;
+}
+#sortable-list-content li {
+    padding:16px;
+}
+#sortable-list-pics li,
+#sortable-list-header li {
+    padding:8px;
+}
+#sortable-list-pics li img	{
+    height:60px;
+}
+#sortable-list-content li .btn-group {
+    margin-top: 0px;
+}
+#sortable-list-pics li .btn-group {
+    margin-top: 20px;
+}
+

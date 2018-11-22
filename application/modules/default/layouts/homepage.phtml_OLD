@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php echo $this->action('head' , 'index' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+</head>
+
+<body id="home-three">
+
+<?php echo $this->render('__layout/header.phtml') ?>
+
+<div id="content-wrapper" class="container">
+
+    <div class="row">
+
+        <div class="sidebar col-md-2 hidden-sm hidden-xs">
+            <!--
+            <iframe class="hidden-sm" scrolling="no" width="100%" height ="223" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3550&nbDay=2&type=5&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>
+            -->
+            <!--
+            <iframe scrolling="no" width="334" height ="175" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=1180&nbDay=2&type=4&lang=nl&bgImageId=0&bgColor=transparent&scrolChoice=1&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>
+            <!--
+            <ilayer>
+                <iframe src="http://www.meteobelgium.be/service/4days/index.php?code=3550&type=city&lang=nl"
+                        allowtransparency="true" align="center" frameborder="0" width="100%" height="250"
+                        scrolling="no" marginwidth="0" marginheight="0">
+                    <a href="http://www.meteobelgie.be" target="_new">www.meteobelgie.be</a>
+                </iframe>
+            </ilayer>
+-->
+
+            <?php echo $this->action('sidebar' , 'event' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+
+            <a href="http://www.meteobelgium.be/service/4days/index.php?code=3550&type=city&lang=nl" class="video-link btn btn-block btn-primary m-b-10">Het weer</a>
+
+            <a href="/<?php echo $this->lng; ?>/wensen" class="btn btn-block btn-primary m-b-10">Wensen &amp; felicitaties</a>
+
+            <?php echo $this->action('index' , 'logo' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+        <div class="col-md-10 col-sm-12">
+            <?php echo $this->action('index' , 'header' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+            <?php echo $this->action('homepage' , 'news' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+        <div class="sidebar col-sm-12 visible-sm visible-xs m-t-40">
+            <?php echo $this->action('sidebar' , 'event' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+            <?php echo $this->action('index' , 'logo' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+        </div>
+
+    </div>
+</div>
+
+<?php echo $this->render('__layout/footer.phtml') ?>
+
+</body>
+
+</html>

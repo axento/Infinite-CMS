@@ -1,0 +1,16 @@
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <h4 class="m-t-20">Adresgegevens</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('type')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="merchantType">Type handelaar <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="merchantType" id="merchantType" class="form-control" value="<?php echo $this->escape($this->item->getType()) ?>" />
+            </div>
+        </div>
+
+    </div>
+</div>
+

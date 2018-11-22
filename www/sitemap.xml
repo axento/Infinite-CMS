@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+            xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/bolderberg]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/bolderberg/basisschool]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/bolderberg/bin-bolderberg]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/bolderberg/ligging]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/tweede-menu]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/tweede-menu/submenu-2-1]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/tweede-menu/submenu-2-2]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/tweede-menu/submenu-2-3]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/news]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/verenigingen]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/link]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc><![CDATA[http://bolderberg:8888/nl/tweede-menu/submenu-2-5]]></loc>
+<changefreq>weekly</changefreq>
+</url>
+</urlset>

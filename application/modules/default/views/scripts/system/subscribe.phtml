@@ -1,0 +1,12 @@
+<?php if ($this->flashMessages): ?>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="alert alert-success margin-bottom-0">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <?php foreach ($this->flashMessages as $message): ?>
+            <?php echo $message; ?><br />
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif ?>

@@ -1,0 +1,33 @@
+<div class="row">
+
+    <div class="col-md-12">
+
+        <?php if ($this->item->getImage()): ?>
+            <div>
+                <?php $image = '/img/merchants/small/' . $this->item->getImage(); ?>
+                <img src="<?php echo $image; ?>" alt="<?php echo $this->item->getImage(); ?>" class="img-polaroid" style="width: 30%;" />
+                <div style="clear: both;"></div>
+            </div>
+        <?php endif ?>
+
+
+
+        <div class="alert alert-warning m-t-20">
+            <b>Opgelet</b>
+            <ul>
+                <li>Bestand moet een JPG-bestand zijn</li>
+                <li><b>Max. <?php echo $this->filesize; ?> MB</b></li>
+                <li>Voor het beste resultaat: breedte <b><?php echo $this->width; ?></b> pixels, hoogte <b><?php echo $this->height; ?></b> pixels. Foto's met een andere afmeting worden bijgesneden!</li>
+            </ul>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('image')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="image">Selecteer afbeelding</label>
+            <div class="controls">
+                <input type="file" name="image" id="image" value="" />
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,85 @@
+<?php foreach ($this->news as $item): ?>
+<?php $link = $this->url(array(
+    'lng' => $this->lng,
+    'url' => $item->getUrl(),
+    'id'  => $item->getNid()),
+    'news-detail', true);  ?>
+
+<div class="news-item">
+
+    <?php if ($item->getLayout() == 'full'): ?>
+        <?php if ($item->getImage()): ?>
+            <div class="row">
+                <div class="col-sm-12">
+                    <img src="/img/news/large/<?php echo $this->escape($item->getImage()) ?>" alt="<?php echo $this->escape($item->getTitle()) ?>" class="img-responsive m-t-20" />
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="row news-full">
+            <div class="col-sm-12">
+                <h1><?php echo $this->escape($item->getTitle()) ?></h1>
+                <blockquote><?php echo $item->getSummary() ?></blockquote>
+            </div>
+        </div>
+        <div class="row p-t-20 m-b-20">
+            <div class="col-sm-6">
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="<?php echo $link ?>" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-square"></i> lees verder</a>
+            </div>
+        </div>
+    <?php elseif ($item->getLayout() == 'left'): ?>
+        <div class="row news-left">
+            <div class="col-sm-6">
+                <?php if ($item->getImage()): ?>
+                <img src="/img/news/large/<?php echo $this->escape($item->getImage()) ?>" alt="<?php echo $this->escape($item->getTitle()) ?>" class="img-responsive m-t-20" />
+                <?php endif; ?>
+            </div>
+            <div class="col-sm-6">
+                <h1><?php echo $this->escape($item->getTitle()) ?></h1>
+                <blockquote><?php echo $item->getSummary() ?></blockquote>
+            </div>
+        </div>
+        <div class="row p-t-20 m-b-20">
+            <div class="col-sm-6">
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="<?php echo $link ?>" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-square"></i> lees verder</a>
+            </div>
+        </div>
+    <?php elseif ($item->getLayout() == 'right'): ?>
+        <div class="row news-right">
+            <div class="col-sm-6">
+                <h1><?php echo $this->escape($item->getTitle()) ?></h1>
+                <blockquote><?php echo $item->getSummary() ?></blockquote>
+            </div>
+            <div class="col-sm-6">
+                <?php if ($item->getImage()): ?>
+                    <img src="/img/news/large/<?php echo $this->escape($item->getImage()) ?>" alt="<?php echo $this->escape($item->getTitle()) ?>" class="img-responsive m-t-20" />
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="row p-t-20 m-b-20">
+            <div class="col-sm-6">
+                <a href="<?php echo $link ?>" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-square"></i> lees verder</a>
+            </div>
+            <div class="col-sm-6">
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+
+</div>
+
+<?php endforeach; ?>
+
+<div class="news-archive">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <a href="/<?php echo $this->lng; ?>/news/index" class="btn btn-primary btn-lg btn-block">nieuwsarchief</a>
+        </div>
+    </div>
+</div>

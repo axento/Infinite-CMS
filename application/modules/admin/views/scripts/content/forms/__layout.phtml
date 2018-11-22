@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert alert-info">
+            <p>Geef aan welk type pagina je wil aanmaken:</p>
+        </div>
+    </div>
+</div>
+<?php foreach ($this->templates as $key => $template): ?>
+<div class="row m-b-30">
+    <div class="col-md-1">
+        <input type="radio" name="layout" value="<?php echo $template->getTemplateID(); ?>"<?php if ($this->page->getLayout() == $template->getTemplateID()): ?> checked="checked"<?php endif ?> />
+    </div>
+    <div class="col-md-2">
+        <i class="<?php echo $template->getImage(); ?>"></i>
+    </div>
+    <div class="col-md-2">
+        <b><?php echo $template->getName(); ?></b>
+    </div>
+    <div class="col-md-5">
+        <?php echo $template->getDescription(); ?>
+    </div>
+</div>
+<?php endforeach; ?>

@@ -1,0 +1,43 @@
+
+<div class="row m-t-20">
+    <a href="/<?php echo $this->lng; ?>/wensen" class="btn btn-secondary"><i class="fa fa-angle-double-left"></i> Terug naar het overzicht</a>
+</div>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+<h1>Wensen en felicitaties</h1>
+<p>Vul onderstaande velden in en klik op 'Verzenden'.</p>
+        <div class="m-t-40">
+            <form role="form" method="post" action="<?php echo $this->url(); ?>">
+                <h4>Voor wie is dit bericht bedoeld:</h4>
+                <div class="form-group <?php if ($this->messages->getHtmlErrors('toFname')): ?> has-error<?php endif; ?>">
+                    <label for="toFname">Voornaam*</label>
+                    <input type="text" name="toFname" class="form-control" id="toFname" value="<?php echo $this->wish->getToFname(); ?>" placeholder="Voornaam">
+                </div>
+                <div class="form-group <?php if ($this->messages->getHtmlErrors('toName')): ?> has-error<?php endif; ?>">
+                    <label for="toName">Naam*</label>
+                    <input type="text" name="toName" class="form-control" id="toName" value="<?php echo $this->wish->getToName(); ?>" placeholder="Naam">
+                </div>
+
+                <h4>Mijn gegevens:</h4>
+                <div class="form-group <?php if ($this->messages->getHtmlErrors('fromFname')): ?> has-error<?php endif; ?>">
+                    <label for="fromFname">Mijn voornaam*</label>
+                    <input type="text" name="fromFname" class="form-control" id="fromFname" value="<?php echo $this->wish->getFromFname(); ?>" placeholder="Mijn voornaam">
+                </div>
+                <div class="form-group <?php if ($this->messages->getHtmlErrors('fromName')): ?> has-error<?php endif; ?>">
+                    <label for="fromName">Mijn naam*</label>
+                    <input type="text" name="fromName" class="form-control" id="fromName" value="<?php echo $this->wish->getFromName(); ?>" placeholder="Mijn naam">
+                </div>
+
+                <div class="form-group m-t-40 <?php if ($this->messages->getHtmlErrors('wish')): ?> has-error<?php endif; ?>">
+                    <label for="wish">Mijn bericht*</label>
+                    <textarea name="wish" class="form-control" rows="5" id="wish" placeholder="Vul je wensen of felicitaties in"><?php echo $this->wish->getWish(); ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ip">IP adres</label>
+                    <input disabled="disabled" type="text" name="ip" class="form-control" id="ip" value="<?php echo $this->ip; ?>">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-paper-plane"></i> Verzenden</button>
+            </form>
+        </div>
+

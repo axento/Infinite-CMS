@@ -1,0 +1,54 @@
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="control-group">
+            <label class="control-label" for="textColor">Tekstkleur</label>
+            <div class="controls">
+                <select name="textColor" class="col-sm-2">
+                    <option value="#ffffff" <?php if ($this->item->getTextColor() == '#ffffff'): ?>selected="selected"<?php endif; ?>>Wit</option>
+                    <option value="#bbbbbb" <?php if ($this->item->getTextColor() == '#bbbbbb'): ?>selected="selected"<?php endif; ?>>Lichtgrijs</option>
+                    <option value="#444444" <?php if ($this->item->getTextColor() == '#444444'): ?>selected="selected"<?php endif; ?>>Donkergrijs</option>
+                    <option value="#000000" <?php if ($this->item->getTextColor() == '#000000'): ?>selected="selected"<?php endif; ?>>Zwart</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('name')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="name">Naam van de slide <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="name" id="name" class="form-control" value="<?php echo $this->escape($this->item->getName()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="title">Titel</label>
+            <div class="controls">
+                <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->item->getTitle()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('subtitle')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="subtitle">Subtitel</label>
+            <div class="controls">
+                <input type="text" name="subtitle" id="subtitle" class="form-control" value="<?php echo $this->escape($this->item->getSubtitle()) ?>" />
+            </div>
+        </div>
+<!--
+        <div class="control-group m-t-20">
+            <label class="control-label" for="content">Inhoud</label>
+            <div class="controls">
+                <textarea name="content" id="content" rows="4" class="form-control"><?php echo $this->escape($this->item->getContent()) ?></textarea>
+            </div>
+        </div>
+-->
+        <div class="control-group m-t-20 <?php if ($this->errors->getHtmlErrors('url')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="url">URL (wordt gebruikt als link voor een knop)</label> <span class="text-muted">bv. http://www.bedrijfsnaam.be of http://www.bolderberg.be/nl/contact</span>
+            <div class="controls">
+                <input type="text" name="url" id="url" class="form-control" value="<?php echo $this->escape($this->item->getURL()) ?>" />
+            </div>
+        </div>
+
+    </div>
+</div>
+

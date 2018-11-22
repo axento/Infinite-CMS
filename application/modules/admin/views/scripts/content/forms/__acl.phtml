@@ -1,0 +1,24 @@
+<?php
+$groups = $this->page->getPermissions();
+?>
+
+<div class="control-group">
+    <div class="radio">
+        <input type="radio" name="acl" value="0" <?php if(!$groups): ?>checked="checked" <?php endif; ?> id="acl-0"  />
+        <label for="acl-0">Iedereen mag deze pagina bekijken</label>
+    </div>
+    <div class="radio">
+        <input type="radio" name="acl" value="1" <?php if($groups): ?>checked="checked" <?php endif; ?> id="acl-1"  />
+        <label for="acl-1">Deze pagina mag enkel bekeken worden door volgende gebruikersgroepen:</label>
+    </div>
+</div>
+
+<div class="control-group m-t-20 m-l-20">
+<?php foreach ($this->groups as $group): ?>
+    <div class="checkbox">
+        <input type="checkbox" name="group[]" id="group-<?php echo $group->getID(); ?>" <?php if (isset($groups[$group->getId()])) { echo 'checked="checked"'; } ?> value="<?php echo $group->getId() ?>" >
+        <label for="group-<?php echo $group->getID(); ?>"><?php echo $group->getName() ?></label>
+    </div>
+<?php endforeach; ?>
+</div>
+

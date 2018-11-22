@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php echo $this->action('head' , 'index' , null , array('page' => $this->page, 'lng' => $this->lng)) ?>
+</head>
+
+<body id="bolderberg">
+<div id="page">
+    <?php echo $this->render('__layout/header.phtml') ?>
+
+    <div id="content-wrapper" class="container">
+        <div class="row" style="margin-top:60px;">
+
+            <div class="col-md-12 content">
+                <?php echo $this->layout()->content ?>
+            </div>
+
+        </div>
+    </div>
+
+    <?php echo $this->render('__layout/footer.phtml') ?>
+</div>
+
+
+</body>
+
+</html>

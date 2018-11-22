@@ -1,0 +1,42 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+//$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Tekstblokken');
+
+$this->placeholder('pageTitle')
+     ->append('Tekstblokken overzicht ('.$_SESSION['System']['lng'].')');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Tekstblokken <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Tekstblok</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <?php foreach ($this->blocks as $id => $item): ?>
+                        <tr>
+                            <td><?php echo $this->escape($item->getBlockname()) ?></td>
+                            <td class="btn-col text-right">
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $item->getId(), 'lng' => $_SESSION['System']['lng'])) ?>" class="btn btn-default btn-xs"><i class="ti-pencil"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

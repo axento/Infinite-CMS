@@ -1,0 +1,38 @@
+<?php
+$system = new Zend_Session_Namespace('System');
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <?php if ($this->page->getId() === false or $this->page->getId() > 0): ?>
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('parent')): ?> has-error<?php endif; ?>">
+             <label class="control-label" for="menu">Hoofdpagina <span class="text-danger">*</span></label>
+             <div class="controls">
+                 <select name="parent_id" id="parentID" class="form-control">
+                     <option value="0" <?php if($this->page->getParentID() == 0): ?>selected="selected" <?php endif; ?>>Homepage</option>
+                     <?php foreach ($this->pages as $page): ?>
+                     <?php if($page->getID() != $this->currentPage): ?>
+                     <option value="<?php echo $page->getID(); ?>" <?php if($this->page->getParentID() == $page->getID()): ?>selected="selected" <?php endif; ?>><?php echo $this->escape($page->getTitle()); ?></option>
+                     <?php endif; ?>
+                     <?php endforeach; ?>
+                 </select>
+                 <p class="desc">Hiermee geef je aan op welk niveau deze pagina moet komen.</p>
+             </div>
+        </div>
+        <?php endif ?>
+
+
+
+        <div class="control-group m-t-20">
+            <div>
+                <div class="checkbox-inline">
+                    <input type="checkbox" name="menu" id="inline-checkbox-1" <?php echo $this->page->isInNavigation() ? 'checked="checked"' : '' ?> value="1"> <label for="inline-checkbox-1">Deze pagina opnemen in het hoofdmenu.</label>
+                </div>
+                <p class="desc m-t-10">Indien uitgevinkt is deze pagina niet zichtbaar in het hoofdmenu. Bv. voor een pagina met Algemene Voorwaarden.</p>
+            </div>
+        </div>
+
+    </div>
+</div>

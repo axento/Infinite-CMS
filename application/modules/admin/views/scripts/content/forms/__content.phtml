@@ -1,0 +1,35 @@
+
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.min.js') ?>
+<?php $this->headScript()->appendFile($this->baseUrl() . '/js/tinymce/tinymce.init.js') ?>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="title">Titel <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->page->getTitle()) ?>" />
+                <p class="desc">Titel van de pagina, zoals deze in het menu getoond wordt.</p>
+            </div>
+        </div>
+
+        <?php if(Zend_Registry::get('config')->content->subtitle): ?>
+        <div class="control-group">
+            <label class="control-label" for="subtitle">Subtitel</label>
+            <div class="controls">
+                <input type="text" name="subtitle" id="subtitle" class="form-control" value="<?php echo $this->escape($this->page->getSubtitle()) ?>" />
+                <p class="desc">Titel van de pagina, die boven onderstaande tekst getoond wordt.</p>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('content')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="content">Inhoud <span class="text-danger">*</span></label>
+            <div class="controls">
+                <textarea name="contenti" id="contenti" style="width:100%;" class="mceEditor form-control"><?php echo $this->escape($this->page->getContent()) ?></textarea>
+            </div>
+        </div>
+    </div>
+
+</div>

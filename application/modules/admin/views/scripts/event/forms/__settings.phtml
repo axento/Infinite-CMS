@@ -1,0 +1,36 @@
+<?php
+
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/page/form-plugins.demo.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/js/bootstrap-datepicker.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/locales/bootstrap-datepicker.nl-BE.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/plugins/form/bootstrap-timepicker/js/bootstrap-timepicker.min.js');
+
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/plugins/form/bootstrap-datepicker/css/bootstrap-datepicker.css');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/plugins/form/bootstrap-timepicker/css/bootstrap-timepicker.css');
+
+?>
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('dateStart')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="summary">Datum <span class="text-danger">*</span></label>
+            <div class="input-group input-daterange" id="datepicker-component">
+                <div class="input-group-addon"><i class="ti-layout-grid3-alt"></i></div>
+                <input type="text" name="dateStart" class="form-control col-sm-2" value="<?php echo $this->dayStart; ?>/<?php echo $this->monthStart; ?>/<?php echo $this->yearStart ?>" />
+                <div class="input-group-addon">tot</div>
+                <input type="text" name="dateStop" class="form-control col-sm-2" value="<?php echo $this->dayStop; ?>/<?php echo $this->monthStop; ?>/<?php echo $this->yearStop ?>" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Tijdstip <span class="text-danger">*</span></label>
+            <div class="input-group bootstrap-timepicker timepicker">
+                <div class="input-group-addon"><i class="ti-timer"></i></div>
+                <input id="timepicker-start" name="timeStart" type="text" class="form-control col-sm-2" value="<?php echo $this->hourStart; ?>:<?php echo $this->minutesStart; ?>" />
+                <span class="input-group-addon">tot</span>
+                <input id="timepicker-stop" name="timeStop" type="text" class="form-control col-sm-2" value="<?php echo $this->hourStop; ?>:<?php echo $this->minutesStop; ?>" />
+            </div>
+        </div>
+    </div>
+</div>
+

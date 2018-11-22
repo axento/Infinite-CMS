@@ -1,0 +1,77 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Kalender overzicht');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Kalender <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/event/add" class="btn btn-success"><i class="ti-infinite"></i> Evenement toevoegen</a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Titel</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <?php foreach ($this->events as $id => $item): ?>
+
+                        <?php
+                            $datetime = new Axento_DateTime();
+                            $date = $datetime->dateFormat($item->getDateStart());
+                        ?>
+
+                        <tr>
+                            <td><?php echo $date; ?></td>
+                            <td><?php echo $this->escape($item->getTitle()) ?></td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => 'edit', 'id' => $item->getID())) ?>">
+                                        <i class="ti-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $item->getID())) ?>');"  >
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Evenement verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u dit evenement wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

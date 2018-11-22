@@ -1,0 +1,15 @@
+<?php if($this->pics) :?>
+
+        <?php foreach($this->pics as $album) : ?>
+
+            <?php foreach($album as $pic) : ?>
+
+            <div class="item">
+                <img class="img-responsive" alt="<?php echo $pic['image'] ?>" src="/img/gallery/album_<?php echo $pic['album_id']; ?>/small/<?php echo $pic['image'] ?>">
+            </div>
+
+            <?php endforeach; ?>
+
+        <?php endforeach; ?>
+
+<?php endif; ?>

@@ -1,0 +1,94 @@
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <h4 class="m-t-20">Type handelaar</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('typeID')): ?> has-error<?php endif; ?>">
+            <div class="controls">
+                <select name="typeID" id="typeID" class="form-control">
+                    <option value="0" <?php if($this->item->getTypeID() == 0): ?>selected="selected"<?php endif; ?>>Selecteer het type handelaar</option>
+                    <?php foreach($this->types as $type): ?>
+                        <option value="<?php echo $type->getID(); ?>" <?php if($this->item->getTypeID() == $type->getID()): ?>selected="selected"<?php endif; ?>><?php echo $type->getType(); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+
+        <h4 class="m-t-20">Adresgegevens</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('company')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="company">Handelaar <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="company" id="company" class="form-control" value="<?php echo $this->escape($this->item->getCompany()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('street')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="company">Straat <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="street" id="street" class="form-control" value="<?php echo $this->escape($this->item->getStreet()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('number')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="number">Huisnummer <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="number" id="number" class="form-control" value="<?php echo $this->escape($this->item->getNumber()) ?>" maxlength="8" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('box')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="box">Postbus</label>
+            <div class="controls">
+                <input type="text" name="box" id="box" class="form-control" value="<?php echo $this->escape($this->item->getBox()) ?>" maxlength="8" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('zip')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="number">Postcode <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="zip" id="zip" class="form-control" value="<?php echo $this->escape($this->item->getZip()) ?>" maxlength="8" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('city')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="number">Gemeente <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="city" id="city" class="form-control" value="<?php echo $this->escape($this->item->getCity()) ?>" />
+            </div>
+        </div>
+
+        <h4 class="m-t-20">Contactgegevens</h4>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('contact')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="contact">Contactpersoon</label>
+            <div class="controls">
+                <input type="text" name="contact" id="contact" class="form-control" value="<?php echo $this->escape($this->item->getContact()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('phone')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="phone">Telefoon</label>
+            <div class="controls">
+                <input type="text" name="phone" id="phone" class="form-control" value="<?php echo $this->escape($this->item->getPhone()) ?>" maxlength="24" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('email')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="email">e-mailadres</label>
+            <div class="controls">
+                <input type="text" name="email" id="email" class="form-control" value="<?php echo $this->escape($this->item->getEmail()) ?>" />
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('website')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="website">Website</label> <span class="text-muted">bv. http://www.bedrijfsnaam.be</span>
+            <div class="controls">
+                <input type="text" name="website" id="website" class="form-control" value="<?php echo $this->escape($this->item->getWebsite()) ?>" />
+            </div>
+        </div>
+
+    </div>
+</div>
+

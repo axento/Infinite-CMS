@@ -1,0 +1,60 @@
+<div class="row">
+
+    <div class="col-md-12">
+
+        <?php if ($this->news->getImage()): ?>
+            <div>
+                <?php $image = '/img/news/small/' . $this->news->getImage(); ?>
+                <img src="<?php echo $image; ?>" alt="<?php echo $this->news->getImage(); ?>" class="img-polaroid" style="width: 300px;" />
+                <div style="clear: both;"></div>
+            </div>
+        <?php endif ?>
+
+        <div class="alert alert-warning m-t-20">
+            <b>Opgelet</b>
+            <ul>
+                <li>Bestand moet een JPG-bestand zijn</li>
+                <li><b>Max. <?php echo $this->filesize; ?> MB</b></li>
+                <li>Voor het beste resultaat: breedte <b><?php echo $this->width; ?></b> pixels, hoogte <b><?php echo $this->height; ?></b> pixels. Foto's met een andere afmeting worden bijgesneden!</li>
+            </ul>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('image')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="image">Selecteer afbeelding</label>
+            <div class="controls">
+                <input type="file" name="image" id="image" value="" />
+            </div>
+        </div>
+
+        <div class="control-group m-t-20">
+            <label>Indien een afbeelding geselecteerd wordt moet deze getoond worden:</label>
+            <div>
+                <div class="radio-inline">
+                    <input type="radio" name="layout" id="layout-full" value="full" <?php if($this->news->getLayout() == 'full'): ?>checked="checked"<?php endif; ?> />
+                    <label for="layout-full">over de volledige breedte</label>
+                </div>
+                <div class="radio-inline">
+                    <input type="radio" name="layout" id="layout-left" value="left" <?php if($this->news->getLayout() == 'left'): ?>checked="checked"<?php endif; ?> />
+                    <label for="layout-left">afbeelding links, tekst rechts</label>
+                </div>
+                <div class="radio-inline">
+                    <input type="radio" name="layout" id="layout-right" value="right" <?php if($this->news->getLayout() == 'right'): ?>checked="checked"<?php endif; ?> />
+                    <label for="layout-right">afbeelding rechts, tekst links</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning m-t-40">
+            <p>Plak hieronder de embed code van Youtube om een video toe te voegen.</p>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('video')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="video">Embed Youtube</label>
+            <div class="controls">
+                <textarea name="video" id="video" class="form-control" rows="5"><?php echo $this->escape($this->news->getVideo()) ?></textarea>
+            </div>
+        </div>
+
+    </div>
+
+</div>

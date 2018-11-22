@@ -1,0 +1,76 @@
+<?php
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+$this->headTitle('Wensen en felicitaties');
+?>
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Wensen &amp; felicitaties <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Tijdstip</th>
+                        <th>Van</th>
+                        <th>Aan</th>
+                        <th>Bericht</th>
+                        <th>Actief</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->contacts as $item): ?>
+                        <?php $date = new Zend_Date($item->getDateCreated(), false, "nl_BE"); ?>
+                        <tr>
+                            <td style="width:100px;"><?php echo $date->toString("dd-MM-YYYY"); ?><br />
+                                <?php echo $date->toString("HH:mm"); ?>
+                            </td>
+                            <td><?php echo $this->escape($item->getFromFname()) ?> <?php echo $this->escape($item->getFromName()) ?></td>
+                            <td><?php echo $this->escape($item->getToFname()) ?> <?php echo $this->escape($item->getToName()) ?></td>
+                            <td><?php echo $this->escape($item->getWish()) ?></td>
+                            <td>
+                                <?php if ($item->getActive()): ?>
+                                    <a class="btn btn-success btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getID())) ?>"><i class="ti-check"></i></a>
+                                <?php else: ?>
+                                    <a class="btn btn-danger btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getID())) ?>"><i class="ti-na"></i></a>
+                                <?php endif ?>
+                            </td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('action' => 'delete', 'id' => $item->getID())) ?>');"  >
+                                        <i class="ti-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Bericht verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u dit bericht wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

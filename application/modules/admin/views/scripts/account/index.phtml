@@ -1,0 +1,107 @@
+<?php
+
+$user = Zend_Auth::getInstance()->getIdentity();
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+
+$this->headTitle('Gebruikers');
+
+$this->placeholder('pageTitle')
+     ->append('Gebruikers overzicht');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Gebruikers <small>overzicht</small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading m-b-20">
+                <a href="/admin/account/add" class="btn btn-success"><i class="ti-user"></i> Gebruiker toevoegen</a>
+            </div>
+            <div class="panel-body">
+                <table class="table m-b-0">
+                    <thead>
+                    <tr>
+                        <th>Gebruiker</th>
+                        <th>Naam</th>
+                        <th>Gebruikersgroep</th>
+                        <th>Actief</th>
+                        <th class="text-right">Acties</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->accounts as $id => $item): ?>
+
+                        <?php
+                        unset($groups);
+                        $i=1;
+                        foreach($item->getGroups() as $group) {
+                            if ($i != 1) {
+                                $groups .= ', ';
+                            }
+                            $groups .=  $group->getName();
+                            $i++;
+                        }
+                        ?>
+
+                        <tr>
+                            <td><?php echo $this->escape($item->getEmail()) ?></td>
+                            <td><?php echo $this->escape($item->getFullName()) ?></td>
+                            <td><?php echo $groups; ?></td>
+                            <td>
+
+                                <?php if ($item->getEmail() != 'info@axento.be'): ?>
+                                    <?php if ($item->isActive()): ?>
+                                        <a class="btn btn-success btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getID())) ?>"><i class="ti-check"></i></a>
+                                    <?php else: ?>
+                                        <a class="btn btn-danger btn-xs" href="<?php echo $this->url(array('action' => 'activate', 'id' => $item->getID())) ?>"><i class="ti-na"></i></a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+
+                            </td>
+                            <td class="btn-col text-right">
+                                <div class="btn-group">
+                                    <?php if ($item->getEmail() != 'info@axento.be'): ?>
+
+                                        <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('action' => 'edit', 'id' => $item->getID())) ?>">
+                                            <i class="ti-pencil"></i>
+                                        </a>
+
+                                        <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('controller' => 'account', 'action' => 'delete', 'id' => $item->getID())) ?>');"  >
+                                            <i class="ti-trash"></i>
+                                        </a>
+
+                                    <?php endif ?>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Gebruiker verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u deze gebruiker wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

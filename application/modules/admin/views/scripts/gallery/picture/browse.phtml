@@ -1,0 +1,118 @@
+<?php
+$this->headLink()->appendStylesheet($this->baseUrl() . '/assets/css/customize.css');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/order-pics.js');
+$this->headScript()->appendFile($this->baseUrl() . '/assets/js/modal.js');
+$this->headTitle('Foto\'s uploaden');
+
+?>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<h1 class="page-header">
+    Foto's uploaden in het album <small><?php echo $this->album->getTitle(); ?></small>
+</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form method="post" action="<?php echo $this->url() ?>" enctype="multipart/form-data" class="form-horizontal">
+                    <input type="hidden" value="<?php echo $this->album_id ?>" id="album_id" name="album_id" />
+                    <input type="hidden" value="upload" name="upload" />
+
+                    <div class="control-group">
+                        <label class="control-label">Selecteer foto <span class="text-danger">*</span></label>
+                        <div class="controls">
+                            <input type="file" name="file" id="image" class="input-large" />
+                            <div class="alert alert-warning" style="margin-top: 20px;">
+                                <h5>Opgelet</h5>
+                                <ul class="description">
+                                    <li>Afbeelding moet in JPG-formaat zijn.</li>
+                                    <li><b>Max. <?php echo $this->filesize; ?>MB.</b></li>
+                                    <li>Voor het beste resultaat: breedte <b><?php echo $this->width; ?></b> pixels, hoogte <b><?php echo $this->height; ?></b> pixels. Foto's met een andere afmeting kunnen bijgesneden worden!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Titel</label>
+                        <div class="controls">
+                            <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->album->getTitle()); ?>" />
+                            <p class="desc">Geef, indien gewenst, een titel op voor deze foto</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label">Subtitel</label>
+                        <div class="controls">
+                            <input type="text" name="subtitle" id="subtitle" class="form-control" />
+                            <p class="desc">Geef, indien gewenst, een subtitel op voor deze foto</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large"><i class="ti-save"></i> Bestand uploaden</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Afbeeldingen die reeds in dit album zitten</h4>
+                <p>Je kan de afbeeldingen in de gewenste volgorde slepen.</p>
+            </div>
+            <div class="panel-body">
+                <form id="dd-form" action="<?php echo $this->url; ?>" method="post">
+                    <ul id="sortable-list-pics">
+                        <?php foreach ($this->pictures as $picture): ?>
+                            <li title="<?php echo $picture['picture_id']; ?>">
+
+                                <a href="/img/gallery/album_<?php echo $picture['album_id']; ?>/large/<?php echo $picture['image']; ?>" class="fancybox" rel="album" title="<?php echo $picture['title']; ?>">
+                                    <img src="/img/gallery/album_<?php echo $picture['album_id']; ?>/small/<?php echo $picture['image']; ?>" alt="<?php echo $picture['file']; ?>" />
+                                </a>
+
+                                <div class="pull-right btn-group">
+                                    <a title="Aanpassen" class="btn btn-default btn-xs" href="<?php echo $this->url(array('controller' => 'gallery_picture', 'action' => 'edit', 'id' => $picture['picture_id'])) ?>">
+                                        <i class="ti-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-xs" data-toggle="modal" href="#delete" onclick="showDelete('Ik ben een title','<?php echo $this->url(array('controller' => 'gallery_picture', 'action' => 'delete', 'id' => $picture['picture_id'])) ?>');"  >
+                                        <i class="ti-trash"></i>
+                                    </a>
+                                </div>
+
+                            </li>
+                            <?php $order[] = $picture['picture_id']; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                    <input type="hidden" name="sort_order" id="sort_order" value="" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-inverse fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header p-b-xs">
+                <h3 class="modal-title text-danger">Afbeelding verwijderen?</h3>
+            </div>
+            <div class="modal-body">
+                <p class="m-b-lg">
+                    Weet u zeker dat u deze afbeelding wilt verwijderen?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="btn btn-primary" data-dismiss="modal">Annuleren</a>
+                <span id="url"></span>
+            </div>
+        </div>
+    </div>
+</div>

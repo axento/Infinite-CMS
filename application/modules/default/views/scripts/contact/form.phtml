@@ -1,0 +1,39 @@
+
+<?php echo $this->render('system/alert.phtml'); ?>
+<div class="row m-t-30">
+    <div class="col-md-8">
+        <h1>Contactformulier</h1>
+        <p>Een vraag of opmerking?<br />Laat uw gegevens achter en wij nemen snel contact met u op.</p>
+        <form role="form" method="post" action="<?php echo $this->url(); ?>">
+
+            <div class="form-group <?php if ($this->messages->getHtmlErrors('name')): ?> has-error<?php endif; ?>">
+                <label for="name"><?php echo $this->contact_tmx->_('lbl.name') ?>*</label>
+                <input type="text" name="name" class="form-control" id="name" value="<?php echo $this->contact->getName(); ?>" placeholder="<?php echo $this->contact_tmx->_('ph.name') ?>">
+            </div>
+            <div class="form-group <?php if ($this->messages->getHtmlErrors('email')): ?> has-error<?php endif; ?>">
+                <label for="email"><?php echo $this->contact_tmx->_('lbl.email') ?>*</label>
+                <input type="email" name="email" class="form-control" id="email" value="<?php echo $this->contact->getEmail(); ?>" placeholder="<?php echo $this->contact_tmx->_('ph.email') ?>">
+            </div>
+            <div class="form-group">
+                <label for="email"><?php echo $this->contact_tmx->_('lbl.phone') ?></label>
+                <input type="text" name="phone" class="form-control" id="phone" value="<?php echo $this->contact->getPhone(); ?>" placeholder="<?php echo $this->contact_tmx->_('ph.phone') ?>">
+            </div>
+            <div class="form-group <?php if ($this->messages->getHtmlErrors('message')): ?> has-error<?php endif; ?>">
+                <label for="message"><?php echo $this->contact_tmx->_('lbl.message') ?>*</label>
+                <textarea name="message" class="form-control" rows="5" id="message" placeholder="<?php echo $this->contact_tmx->_('ph.message') ?>"><?php echo $this->contact->getMessage(); ?></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-paper-plane"></i> <?php echo $this->contact_tmx->_('btn.send') ?></button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <h2>e-mailadressen</h2>
+        Nieuws: <a href="mailto:nieuws@bolderberg.be">nieuws@bolderberg.be</a><br />
+        Handelaars: <a href="mailto:bhv@bolderberg.be">bhv@bolderberg.be</a><br />
+        Parochie: <a href="mailto:parochie@bolderberg.be">parochie@bolderberg.be</a><br />
+        Dorpsraad: <a href="mailto:dorpsraad@bolderberg.be">dorpsraad@bolderberg.be</a>
+    </div>
+</div>
+
+
+

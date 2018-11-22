@@ -1,0 +1,29 @@
+<h1>Felicitaties &amp; wensen</h1>
+
+<?php echo $this->render('system/alert.phtml'); ?>
+
+<a href="/<?php echo $this->lng; ?>/wensen/toevoegen" class="btn btn-primary m-b-40"><i class="fa fa-plus-square"></i> Voeg een bericht toe</a>
+
+<?php if($this->wishes): ?>
+<?php foreach ($this->wishes as $item): ?>
+
+<div class="row">
+    <div class="col-sm-6 text-muted">
+        Van: <?php echo $this->escape($item->getFromFname()); ?> <?php echo $this->escape($item->getFromName()); ?>
+    </div>
+    <div class="col-sm-6 text-muted">
+        Aan: <?php echo $this->escape($item->getToFname()); ?> <?php echo $this->escape($item->getToName()); ?>
+    </div>
+    <div class="col-sm-12">
+        <?php echo $this->escape($item->getWish()); ?>
+    </div>
+</div>
+<hr />
+<?php endforeach; ?>
+
+<?php //echo $this->paginationControl($this->paginator, 'Sliding', 'system/pagination.phtml'); ?>
+<?php else: ?>
+<div class="alert alert-warning m-t-40">
+    <p>Er werden nog geen wensen of felicitaties toegevoegd.</p>
+</div>
+<?php endif; ?>

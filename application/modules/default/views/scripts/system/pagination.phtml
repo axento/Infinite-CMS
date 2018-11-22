@@ -1,0 +1,23 @@
+
+<?php if ($this->pageCount > 1): ?>
+<div id="pagination" class="row">
+        <div class="col-sm-6" >
+            Pagina <?php echo $this->current; ?> van <?php echo $this->last; ?>
+        </div>
+        <div class="col-sm-6 text-right">
+            <?php if (isset($this->previous)): ?>
+                <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">vorige</a>
+            <?php else: ?>
+                <span class="disabled">vorige</span>
+            <?php endif; ?> |
+            <?php if (isset($this->next)): ?>
+                <a href="<?php echo $this->url(array('page' => $this->next)); ?>">volgende</a>
+            <?php else: ?>
+                <span class="disabled">volgende</span>
+            <?php endif; ?>
+            pagina
+        </div>
+</div>
+<?php endif; ?>
+
+

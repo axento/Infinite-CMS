@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <p class="desc m-b-20">Make sure to use a valid email address, you'll need to verify it before you can login to your account.</p>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('title')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="title">Titel <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="title" id="title" class="form-control" value="<?php echo $this->escape($this->page->getTitle()) ?>" />
+                <p class="desc">Titel van de pagina. Deze zal getoond worden in het menu.</p>
+            </div>
+        </div>
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('url')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="url">Link naar de pagina <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="url" id="url" class="form-control" value="<?php echo $this->escape($this->page->getURL()) ?>" />
+                <p class="desc">Verplicht in te vullen, minimum 1 karakter.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

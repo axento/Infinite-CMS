@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="control-group <?php if ($this->errors->getHtmlErrors('name')): ?> has-error<?php endif; ?>">
+            <label class="control-label" for="name">Naam <span class="text-danger">*</span></label>
+            <div class="controls">
+                <input type="text" name="name" id="name" class="form-control" value="<?php echo $this->escape($this->group->getName()) ?>" />
+                <span class="desc">Geef een naam aan de gebruikersgroep</span>
+            </div>
+        </div>
+
+        <div class="control-group m-t-20">
+            <label>Selecteer alle modules die deze gebruikersgroep mag beheren</label>
+            <?php foreach ($this->acls as $acl): ?>
+            <?php
+            if (in_array($acl->getID(),$this->aclIDS)) {
+                $checked = true;
+            }  else {
+                $checked = false;
+            }
+            ?>
+
+            <div class="checkbox">
+                <input type="checkbox" name="acl[<?php echo $acl->getID(); ?>]" id="module-<?php echo $acl->getID(); ?>" <?php if($checked): ?>checked="checked" <?php endif; ?> />
+                <label for="module-<?php echo $acl->getID(); ?>"><?php echo $acl->getName(); ?></label>
+            </div>
+
+            <?php endforeach; ?>
+        </div>
+
+    </div>
+</div>
